@@ -28,13 +28,11 @@
 
         break;
         case 'list';
-        echo '<h1 onclick=hola()>cargarprecio()</h1>';
-        echo '<script>cargarprecio();</script>';
+        echo '<script>hola();</script>';
         include("views/html/home.html");
         break;
  
         case 'prueba';
-        echo '<h1>cargarprecio()</h1>';
         echo '<script>cargarprecio();</script>';
         // $data = 'hola crtl user';
         // die('<script>console.log('.json_encode( $data ) .');</script>');
