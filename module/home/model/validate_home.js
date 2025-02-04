@@ -1,5 +1,12 @@
 function cargarprecio() {
-    alert("hola");
+    ajaxpromise('POST', '?module=controller_home&op=prueba', null, 'json')
+    .then(data => {
+        console.log("Respuesta recibida:", data);
+    })
+    .catch(error => {
+        console.error("Error en la petición:", error);
+    });
+
 /*     $(document).on('click', '.list-curso', function () { 
         var id = this.getAttribute('id');
         ajaxpromise("Post","module/cursos/controller/controller_cursos.php?op=read_modal","modal="+ id,"json" )

@@ -8,7 +8,7 @@
 		function select_productos_precio(){
 			// $data = 'hola DAO select_user';
             // die('<script>console.log('.json_encode( $data ) .');</script>');
-			$sql = "SELECT * FROM productos ORDER BY precio DESC LIMIT 5";
+			$sql = "SELECT * FROM productos ORDER BY precio DESC LIMIT 3";
 			
 			$conexion = connect::con();
             $res = mysqli_query($conexion, $sql);
@@ -18,7 +18,7 @@
 		function select_producto_ciudad(){
 			// $data = 'hola DAO select_user';
             // die('<script>console.log('.json_encode( $data ) .');</script>');
-			$sql = "SELECT * FROM cursos ORDER BY `fecha_inicio` ASC LIMIT 5";
+			$sql = "SELECT * FROM cursos ORDER BY `fecha_inicio` ASC LIMIT 3";
 			
 			$conexion = connect::con();
             $res = mysqli_query($conexion, $sql);

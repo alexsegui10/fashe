@@ -11,8 +11,8 @@
         // die('<script>console.log('.json_encode( $data ) .');</script>');
           
         try{
-            $daocurso = new DAOCurso();
-            $rdo = $daocurso->select_curso_precio();
+            $daocurso = new DAOHome();
+            $rdo = $daocurso->select_productos_precio();
             //die('<script>console.log('.json_encode( $rdo->num_rows ) .');</script>');
         }catch (Exception $e){
             $callback = 'index.php?seccion=503';
@@ -28,32 +28,30 @@
 
         break;
         case 'list';
-        echo '<script>hola();</script>';
         include("views/html/home.html");
+        echo '<script>cargarprecio();</script>';
         break;
  
         case 'prueba';
-        echo '<script>cargarprecio();</script>';
-        // $data = 'hola crtl user';
-        // die('<script>console.log('.json_encode( $data ) .');</script>');
-          
-        try{
-            $daocurso = new DAOHome();
-            $rdo = $daocurso->select_productos_precio();
-            //die('<script>console.log('.json_encode( $rdo->num_rows ) .');</script>');
-        }catch (Exception $e){
-            $callback = 'index.php?seccion=503';
-            die('<script>window.location.href="'.$callback .'";</script>');
-        }
-        
-        if(!$rdo){
-            $callback = 'index.php?seccion=503';
-            die('<script>window.location.href="'.$callback .'";</script>');
-        }else{
-            include("views/html/home.php");
-        }
-        break;
-
+        header('Content-Type: application/json');
+            try{
+                $daocurso = new DAOHome();
+                $rdo = $daocurso->select_productos_precio();
+                }catch (Exception $e){
+                    echo json_encode("error");
+                    exit;
+                }
+                if(!$rdo){
+                    echo json_encode("error");
+                    exit;
+            }else{
+                    $curso=get_object_vars($rdo);
+                    echo json_encode($curso);
+                    //echo json_encode("error");
+                    exit;
+            } // $data = 'hola crtl user';
             
-    }
+        // die('<script>console.log('.json_encode( $data ) .');</script>');
+            
+    } 
      
