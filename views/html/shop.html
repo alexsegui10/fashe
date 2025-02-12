@@ -1,0 +1,209 @@
+<body class="animsition collection">
+  
+  <!-- TÍTULO DE PÁGINA (banner superior) -->
+  <section class="bg-title-page p-t-50 p-b-40 flex-col-c-m"
+           style="background-image:url(//fashe-theme.myshopify.com/cdn/shop/t/2/assets/collection_top.jpg?v=87143135852698735121515439163);">
+    <h2 class="l-text2 t-center">Products</h2>
+  </section>
+
+  <!-- CONTENIDO PRINCIPAL DE PRODUCTOS -->
+  <section class="bgwhite p-t-55 p-b-65">
+    <div class="container">
+      <div class="row">
+        <!-- Columna IZQUIERDA: FILTROS / CATEGORÍAS -->
+        <div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
+          <div class="leftbar p-r-20 p-r-0-sm" id="column-left">
+            <h4 class="m-text14 p-b-7">Categories</h4>
+            <ul class="p-b-54">
+              <li class="p-t-4"><a class="s-text13" href="/collections/best-seller">Best Seller (8 items)</a></li>
+              <li class="p-t-4"><a class="s-text13" href="/collections/featured">Featured (8 items)</a></li>
+              <li class="p-t-4"><a class="s-text13" href="/collections/men">Men (8 items)</a></li>
+              <li class="p-t-4"><a class="s-text13" href="/collections/women">Women (8 items)</a></li>
+            </ul>
+            
+            <!-- Filtro color -->
+            <div class="filter-attribute-container">
+              <h4 class="m-text14 p-b-7">color</h4>
+              <div id="filter-group1" class="advanced-filters" data-filter-group="color">
+                <span><a href="/collections/all/color_black">black</a></span>
+                <span><a href="/collections/all/color_gray">gray</a></span>
+                <span><a href="/collections/all/color_red">red</a></span>
+              </div>
+            </div>
+            <!-- Filtro precio -->
+            <div class="filter-attribute-container">
+              <h4 class="m-text14 p-b-7">price</h4>
+              <div id="filter-group2" class="advanced-filters" data-filter-group="price">
+                <span><a href="/collections/all/price_0-20">0-20</a></span>
+                <span><a href="/collections/all/price_20-40">20-40</a></span>
+              </div>
+            </div>
+            <!-- Filtro talla -->
+            <div class="filter-attribute-container">
+              <h4 class="m-text14 p-b-7">size</h4>
+              <div id="filter-group3" class="advanced-filters" data-filter-group="size">
+                <span><a href="/collections/all/size_l">L</a></span>
+                <span><a href="/collections/all/size_m">M</a></span>
+                <span><a href="/collections/all/size_s">S</a></span>
+                <span><a href="/collections/all/size_xl">XL</a></span>
+              </div>
+            </div>
+
+            <!-- Buscador simple -->
+            <form action="/search" method="POST" role="search" id="blog-search">
+              <div id="search" class="search-product pos-relative bo4 of-hidden">
+                <input type="text" name="q" value="" placeholder="Search..." class="s-text7 size6 p-l-23 p-r-50" />
+                <button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">
+                  <i class="fs-12 fa fa-search" aria-hidden="true"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Columna DERECHA: LISTADO DE PRODUCTOS -->
+        <div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
+          <div id="wraper_ajax" class="loadding_ajaxcart"><i class="fa fa-spinner fa-spin"></i></div>
+          
+          <!-- Opciones de visualización / orden / cantidad -->
+          <div class="flex-sb-m flex-w p-b-35">
+            <div class="flex-w">
+              <div class="rs2-select2 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
+                <select class="form-control" name="input-sort" id="input-sort">
+                  <option value="manual">Featured</option>
+                  <option value="best-selling">Best Selling</option>
+                  <option value="title-ascending" selected>Alphabetically, A-Z</option>
+                  <option value="title-descending">Alphabetically, Z-A</option>
+                  <option value="price-ascending">Price, low to high</option>
+                  <option value="price-descending">Price, high to low</option>
+                  <option value="created-descending">Date, new to old</option>
+                  <option value="created-ascending">Date, old to new</option>
+                </select>
+              </div>
+              <div class="rs2-select2 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
+                <select name="" id="input-limit" class="form-control">
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                  <option value="all">All</option>
+                </select>
+              </div>
+            </div>
+            <span class="s-text8 p-t-5 p-b-5">
+              <div class="product-results">Showing 1 to 6 of 8 items</div>
+            </span>
+          </div>
+
+          <!-- GRID DE PRODUCTOS -->
+          <div class="row" id="custom-products">
+            <!-- Producto 1 -->
+            <div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+              <div class="block2">
+                <div class="block2-img wrap-pic-w of-hidden pos-relative">
+                  <a href="/collections/all/products/boxy-t-shirt-with-roll-sleeve-detail">
+                    <img src="//fashe-theme.myshopify.com/cdn/shop/products/item-03_1200x1600.jpg?v=1514269273"
+                         alt="Boxy T-Shirt with Roll Sleeve Detail">
+                  </a>
+                  <div class="block2-overlay trans-0-4">
+                    <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4"></a>
+                    <div class="block2-btn-addcart w-size1 trans-0-4">
+                      <button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+                        Add to Cart
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="block2-txt p-t-20">
+                  <a href="/collections/all/products/boxy-t-shirt-with-roll-sleeve-detail" class="block2-name dis-block s-text3 p-b-5">
+                    Boxy T-Shirt with Roll Sleeve Detail
+                  </a>
+                  <span class="block2-price m-text6 p-r-5">
+                    <span class="money">$20.00</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+      
+
+          <!-- PAGINACIÓN -->
+          <div class="pagination flex-m flex-w p-t-26" id="pagination">
+            <a class="item-pagination flex-c-m trans-0-4 active-pagination" href="#">1</a>
+            <a class="item-pagination flex-c-m trans-0-4" href="/collections/all?page=2">2</a>
+            <a class="item-pagination flex-c-m trans-0-4" href="/collections/all?page=2">&gt;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICKVIEW PRODUCT (si deseas conservarlo) -->
+  <div id="quickview-wrapper">
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="modal-product">
+              <!-- Imágenes del producto -->
+              <div class="product-images">
+                <div class="main-image images">
+                  <img alt="" src="" class="img-responsive">
+                </div>
+              </div>
+              <!-- Información del producto -->
+              <div class="product-info">
+                <h1>Sleeve High Neck Bodycon Dress</h1>
+                <div class="price-box">
+                  <p class="price"><span class="special-price"><span class="amount">$132.00</span></span></p>
+                </div>
+                <a href="#" class="see-all">See all features</a>
+                <div class="quick-add-to-cart">
+                  <form class="cart" action="/cart/add" method="post" enctype="multipart/form-data" id="addToCartForm">
+                    <div class="numbers-row">
+                      <input type="hidden" id="id" name="id" value="" />
+                      <input type="number" name="quantity" id="quantity" value="1">
+                    </div>
+                    <button class="single_add_to_cart_button" type="submit">Add to Cart</button>
+                  </form>
+                </div>
+                <div class="quick-desc">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor.
+                </div>
+              </div>
+              <!-- .product-info -->
+            </div>
+            <!-- .modal-product -->
+          </div>
+          <!-- .modal-body -->
+        </div>
+        <!-- .modal-content -->
+      </div>
+      <!-- .modal-dialog -->
+    </div>
+    <!-- END Modal -->
+  </div>
+  <!-- FIN QUICKVIEW -->
+
+  <!-- ==================  JS NECESARIO PARA EL DISEÑO  ================== -->
+  <script src="//fashe-theme.myshopify.com/cdn/shop/t/2/assets/jquery-3.2.1.min.js?v=9503732020592794151514306499"></script>
+  <script src="//fashe-theme.myshopify.com/cdn/shop/t/2/assets/animsition.min.js?v=38212622429695313261514306600"></script>
+  <script src="//fashe-theme.myshopify.com/cdn/shop/t/2/assets/popper.js?v=182758729953380268121514306670"></script>
+  <script src="//fashe-theme.myshopify.com/cdn/shop/t/2/assets/bootstrap.min.js?v=113702707337452852401514306732"></script>
+  <script src="//fashe-theme.myshopify.com/cdn/shop/t/2/assets/select2.min.js?v=24240855438481471241514306767"></script>
+  <script src="//fashe-theme.myshopify.com/cdn/shop/t/2/assets/slick.min.js?v=71779134894361685811514306840"></script>
+  <script src="//fashe-theme.myshopify.com/cdn/shop/t/2/assets/slick-custom.js?v=82849584525754092391515413861"></script>
+  <script src="//fashe-theme.myshopify.com/cdn/shop/t/2/assets/countdowntime.js?v=160041925266545625021514571155"></script>
+  <script src="//fashe-theme.myshopify.com/cdn/shop/t/2/assets/lightbox.min.js?v=115475758916614112571514307025"></script>
+  <script src="//fashe-theme.myshopify.com/cdn/shop/t/2/assets/sweetalert.min.js?v=6032511306790089171514307013"></script>
+  <script src="//fashe-theme.myshopify.com/cdn/shop/t/2/assets/parallax100.js?v=173214349598684501021515019196"></script>
+  <script src="//fashe-theme.myshopify.com/cdn/shop/t/2/assets/main.js?v=120536243774098306061514547350"></script>
+  <script src="//fashe-theme.myshopify.com/cdn/shop/t/2/assets/owl.carousel.min.js?v=75813715580695946121514268530"></script>
+  <script src="//fashe-theme.myshopify.com/cdn/shop/t/2/assets/jquery.magnific-popup.min.js?v=36562446327542377791514268527"></script>
+  <script src="//fashe-theme.myshopify.com/cdn/shop/t/2/assets/quickview.js?v=122041609818231757241514268552"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.js"></script>
+</body>

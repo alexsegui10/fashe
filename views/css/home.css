@@ -1,0 +1,278 @@
+.imagen-fija {
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+  .imagen-fija-1 {
+    width: 350px;
+    height: 250px;
+    display: block;
+    margin: 0 auto;
+  }
+  .cards-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  .card img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .card {
+    margin: 0 0.5em;
+    box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+    border: none;
+  }
+  .carousel-inner {
+    padding: 1em;
+  }
+  .carousel-control-prev,
+  .carousel-control-next {
+    background-color: #e1e1e1;
+    width: 5vh;
+    height: 5vh;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  @media (min-width: 768px) {
+    .card img {
+      height: 11em;
+    }
+  }
+
+  
+
+  /*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --first-color: hsl(82, 60%, 28%);
+  --title-color: hsl(0, 0%, 15%);
+  --text-color: hsl(0, 0%, 35%);
+  --body-color: hsl(0, 0%, 95%);
+  --container-color: hsl(0, 0%, 100%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Poppins", sans-serif;
+  --h2-font-size: 1.25rem;
+  --small-font-size: .813rem;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1120px) {
+  :root {
+    --h2-font-size: 1.5rem;
+    --small-font-size: .875rem;
+  }
+}
+
+/*=============== BASE ===============*/
+
+
+/*=============== CARD ===============*/
+.container-cards {
+  /* En lugar de usar grid, dejamos un contenedor normal */
+  width: 100%;
+  max-width: 1300px;      /* Ajusta el ancho máximo a tu gusto */
+  margin: 0 auto;         /* Centra el contenedor */
+  padding: 5rem 1.5rem;   /* Espaciado superior/inferior y laterales */
+}
+
+/* Este contenedor lo maneja Slick; quitamos grid */
+.card__container {
+  display: block;   /* Sobrescribimos 'display: grid' */
+  /* No definas row-gap o column-gap aquí; Slick se encarga del reparto */
+}
+
+/* Cada artículo (tarjeta) */
+.card__article {
+  position: relative;
+  overflow: hidden; /* para el efecto de hover en .card__data */
+  /* Si lo deseas, podrías añadir un margin interno para separar slides */
+  /* margin: 0 1rem; */
+}
+
+/* Imagen de la tarjeta */
+.card__img {
+  display: block;
+  width: 300px;
+  max-width: 328px;   /* Controla el ancho máximo para que no se distorsione */
+  height: 280px;      /* Ajusta según necesites */
+  border-radius: 1.5rem;
+  object-fit: cover;  /* Corta la imagen sin deformarla */
+  margin: 0 auto;     /* Centra la imagen dentro del slide */
+}
+
+/* Contenedor de los datos que aparece al hover */
+.card__data {
+  width: 280px;
+  background-color: var(--container-color, #fff);
+  padding: 1.5rem 2rem;
+  box-shadow: 0 8px 24px hsla(0, 0%, 0%, .15);
+  border-radius: 1rem;
+  position: absolute;
+  bottom: -9rem;
+  left: 0;   /* Para centrar horizontalmente con margin: auto */
+  right: 0;
+  margin-inline: auto;
+  opacity: 0;
+  transition: opacity 1s 1s;
+}
+
+.card__description {
+  display: block;
+  font-size: var(--small-font-size, 0.875rem);
+  margin-bottom: .25rem;
+}
+
+.card__title {
+  font-size: var(--h2-font-size, 1.5rem);
+  font-weight: 500;
+  color: var(--title-color, #333);
+  margin-bottom: .75rem;
+}
+
+.card__button {
+  text-decoration: none;
+  font-size: var(--small-font-size, 0.875rem);
+  font-weight: 500;
+  color: var(--first-color, #1a73e8);
+}
+
+.card__button:hover {
+  text-decoration: underline;
+}
+
+/* Efectos hover */
+.card__article:hover .card__data {
+  animation: show-data 1s forwards;
+  opacity: 1;
+  transition: opacity .3s;
+}
+
+.card__article:hover {
+  animation: remove-overflow 2s forwards;
+}
+
+.card__article:not(:hover) {
+  animation: show-overflow 2s forwards;
+}
+
+.card__article:not(:hover) .card__data {
+  animation: remove-data 1s forwards;
+}
+
+/* Animaciones de la tarjeta */
+@keyframes show-data {
+  50% {
+    transform: translateY(-10rem);
+  }
+  100% {
+    transform: translateY(-7rem);
+  }
+}
+
+@keyframes remove-overflow {
+  to {
+    overflow: initial;
+  }
+}
+
+@keyframes remove-data {
+  0% {
+    transform: translateY(-7rem);
+  }
+  50% {
+    transform: translateY(-10rem);
+  }
+  100% {
+    transform: translateY(.5rem);
+  }
+}
+
+@keyframes show-overflow {
+  0% {
+    overflow: initial;
+    pointer-events: none;
+  }
+  50% {
+    overflow: hidden;
+  }
+}
+
+/*=============== TITULO ===============*/
+.titulo_a {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+/*=============== BREAKPOINTS ===============*/
+
+/* Dispositivos muy pequeños (hasta 340px) */
+@media screen and (max-width: 340px) {
+  .container-cards {
+    padding: 5rem 1rem;
+  }
+  
+  .card__data {
+    width: 250px;
+    padding: 1rem;
+  }
+}
+
+/* Dispositivos medianos (desde 768px) */
+/* Slick se encargará de slidesToShow:2 en 768px, pero si quieres 
+   un grid fallback sin slick, podrías configurar algo aquí. */
+@media screen and (min-width: 768px) {
+  /* tu css adicional */
+}
+
+/* Dispositivos grandes (desde 1120px) */
+/* Slick se encargará de slidesToShow:4, no hace falta forzar nada aquí */
+@media screen and (min-width: 1120px) {
+  /* tu css adicional */
+}
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 50%; 
+  transform: translateY(-50%); 
+  font-size: 2rem;      /* Tamaño de la flecha (texto) */
+  background: none;     /* Sin fondo */
+  border: none;         /* Sin borde */
+  cursor: pointer;      /* Cursor “mano” */
+  z-index: 2;           /* Que no se tapen detrás de las imágenes */
+}
+
+/* Flecha izquierda */
+.slick-prev {
+  left: 0;   /* Se alinea al borde izquierdo del carrusel */
+  margin-left: 1rem; 
+}
+
+/* Flecha derecha */
+.slick-next {
+  right: 0;  /* Se alinea al borde derecho del carrusel */
+  margin-right: 1rem;
+}
+
+/* Aplicas padding a cada slide */
+.slick-slide {
+  padding: 0 1rem;  /* 1rem a izquierda y derecha */
+}
+
+/* Ajustas el contenedor para compensar los paddings y evitar que la primera 
+   y última tarjeta se recorten. */
+.slick-list {
+  margin: 0 -1rem; 
+}

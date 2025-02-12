@@ -1,29 +1,45 @@
 <?php
-	$path = $_SERVER['DOCUMENT_ROOT'] . '/Cursos/';
+    $path = $_SERVER['DOCUMENT_ROOT'] . '/Fashe/';
 	include($path . "model/connect.php");
 
 	class DAOHome{
 		
 
 		function select_productos_precio(){
-			// $data = 'hola DAO select_user';
-            // die('<script>console.log('.json_encode( $data ) .');</script>');
-			$sql = "SELECT * FROM productos ORDER BY precio DESC LIMIT 3";
-			
+			$sql = "SELECT * FROM marcas";
 			$conexion = connect::con();
-            $res = mysqli_query($conexion, $sql);
-            connect::close($conexion);
-            return $res;
+			$res = mysqli_query($conexion, $sql);
+			$array_resultados = array();
+			while ($fila = mysqli_fetch_assoc($res)) {
+				$array_resultados[] = $fila;
+			}
+			connect::close($conexion);
+			return $array_resultados;
 		}
-		function select_producto_ciudad(){
-			// $data = 'hola DAO select_user';
-            // die('<script>console.log('.json_encode( $data ) .');</script>');
-			$sql = "SELECT * FROM cursos ORDER BY `fecha_inicio` ASC LIMIT 3";
-			
+
+
+		function select_categorias(){
+			$sql = "SELECT * FROM categorias limit 3";
 			$conexion = connect::con();
-            $res = mysqli_query($conexion, $sql);
-            connect::close($conexion);
-            return $res;
+			$res = mysqli_query($conexion, $sql);
+			$array_resultados = array();
+			while ($fila = mysqli_fetch_assoc($res)) {
+				$array_resultados[] = $fila;
+			}
+			connect::close($conexion);
+			return $array_resultados;
+		}
+
+		function select_producto_ciudad(){
+			$sql = "SELECT * FROM ciudades ";
+			$conexion = connect::con();
+			$res = mysqli_query($conexion, $sql);
+			$array_resultados = array();
+			while ($fila = mysqli_fetch_assoc($res)) {
+				$array_resultados[] = $fila;
+			}
+			connect::close($conexion);
+			return $array_resultados;
 		}
 		
 		

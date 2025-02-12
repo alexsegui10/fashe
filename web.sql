@@ -1,305 +1,241 @@
-
+DROP DATABASE IF EXISTS wallapop_alex;
+CREATE DATABASE wallapop_alex;
+USE wallapop_alex;
 
 CREATE TABLE ciudades (
-  id_ciudad INT,
+  id_ciudad INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100),
   image VARCHAR(255)
 );
 
 CREATE TABLE marcas (
-  id_marca INT,
+  id_marca INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100),
   image VARCHAR(255)
 );
 
 CREATE TABLE modelos (
-  id_modelo INT,
+  id_modelo INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100),
   image VARCHAR(255),
-  id_marca INT
+  id_marca INT,
+  FOREIGN KEY (id_marca) REFERENCES marcas(id_marca)
 );
 
 CREATE TABLE estados (
-  id_estado INT,
+  id_estado INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100),
   image VARCHAR(255)
 );
 
 CREATE TABLE categorias (
-  id_categoria INT,
+  id_categoria INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100),
   image VARCHAR(255)
 );
 
 CREATE TABLE tipos (
-  id_tipo INT,
+  id_tipo INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100),
   image VARCHAR(255)
 );
 
 CREATE TABLE tipos_venta (
-  id_tipo_venta INT,
+  id_tipo_venta INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100),
   image VARCHAR(255)
 );
 
 CREATE TABLE colores (
-  id_color INT,
+  id_color INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100),
   image VARCHAR(255)
 );
 
 CREATE TABLE materiales (
-  id_material INT,
+  id_material INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100),
   image VARCHAR(255)
 );
 
-CREATE TABLE productos (
-  id_producto INT,
+CREATE TABLE accesorios (
+  id_accesorio INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100),
   image VARCHAR(255),
   id_modelo INT,
   id_estado INT,
   id_ciudad INT,
   descripcion TEXT,
-  precio DECIMAL(10,2)
+  precio DECIMAL(10,2),
+  FOREIGN KEY (id_modelo) REFERENCES modelos(id_modelo),
+  FOREIGN KEY (id_estado) REFERENCES estados(id_estado),
+  FOREIGN KEY (id_ciudad) REFERENCES ciudades(id_ciudad)
 );
 
-CREATE TABLE imagenes_productos (
-  id_imagen_producto INT,
+CREATE TABLE imagenes_accesorios (
+  id_imagen_accesorio INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100),
   image VARCHAR(255),
-  id_producto INT,
-  url_imagen VARCHAR(255)
+  id_accesorio INT,
+  FOREIGN KEY (id_accesorio) REFERENCES accesorios(id_accesorio)
 );
 
-CREATE TABLE productos_categorias (
-  id_productos_categorias INT,
-  name VARCHAR(100),
-  image VARCHAR(255),
-  id_producto INT,
-  id_categoria INT
+CREATE TABLE accesorios_categorias (
+  id_accesorio INT,
+  id_categoria INT,
+  FOREIGN KEY (id_accesorio) REFERENCES accesorios(id_accesorio),
+  FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria)
 );
 
-CREATE TABLE productos_tipos (
-  id_productos_tipos INT,
-  name VARCHAR(100),
-  image VARCHAR(255),
-  id_producto INT,
-  id_tipo INT
+CREATE TABLE accesorios_tipos (
+  id_accesorio INT,
+  id_tipo INT,
+  FOREIGN KEY (id_accesorio) REFERENCES accesorios(id_accesorio),
+  FOREIGN KEY (id_tipo) REFERENCES tipos(id_tipo)
 );
 
-
-CREATE TABLE productos_tipos_venta (
-  id_productos_tipos_venta INT,
-  name VARCHAR(100),
-  image VARCHAR(255),
-  id_producto INT,
-  id_tipo_venta INT
+CREATE TABLE accesorios_tipos_venta (
+  id_accesorio INT,
+  id_tipo_venta INT,
+  FOREIGN KEY (id_accesorio) REFERENCES accesorios(id_accesorio),
+  FOREIGN KEY (id_tipo_venta) REFERENCES tipos_venta(id_tipo_venta)
 );
 
-
-CREATE TABLE productos_colores (
-  id_productos_colores INT,
-  name VARCHAR(100),
-  image VARCHAR(255),
-  id_producto INT,
-  id_color INT
+CREATE TABLE accesorios_colores (
+  id_accesorio INT,
+  id_color INT,
+  FOREIGN KEY (id_accesorio) REFERENCES accesorios(id_accesorio),
+  FOREIGN KEY (id_color) REFERENCES colores(id_color)
 );
 
-CREATE TABLE productos_materiales (
-  id_productos_materiales INT,
-  name VARCHAR(100),
-  image VARCHAR(255),
-  id_producto INT,
-  id_material INT
+CREATE TABLE accesorios_materiales (
+  id_accesorio INT,
+  id_material INT,
+  FOREIGN KEY (id_accesorio) REFERENCES accesorios(id_accesorio),
+  FOREIGN KEY (id_material) REFERENCES materiales(id_material)
 );
 
-
---Restricicones
-
-ALTER TABLE ciudades
-  MODIFY id_ciudad INT AUTO_INCREMENT,
-  ADD PRIMARY KEY (id_ciudad);
-
-
-ALTER TABLE marcas
-  MODIFY id_marca INT AUTO_INCREMENT,
-  ADD PRIMARY KEY (id_marca);
-
-
-ALTER TABLE modelos
-  MODIFY id_modelo INT AUTO_INCREMENT,
-  ADD PRIMARY KEY (id_modelo),
-  ADD CONSTRAINT fk_modelos_marca
-    FOREIGN KEY (id_marca) REFERENCES marcas(id_marca);
-
-ALTER TABLE estados
-  MODIFY id_estado INT AUTO_INCREMENT,
-  ADD PRIMARY KEY (id_estado);
-
-ALTER TABLE categorias
-  MODIFY id_categoria INT AUTO_INCREMENT,
-  ADD PRIMARY KEY (id_categoria);
-
-ALTER TABLE tipos
-  MODIFY id_tipo INT AUTO_INCREMENT,
-  ADD PRIMARY KEY (id_tipo);
-
-ALTER TABLE tipos_venta
-  MODIFY id_tipo_venta INT AUTO_INCREMENT,
-  ADD PRIMARY KEY (id_tipo_venta);
-
-ALTER TABLE colores
-  MODIFY id_color INT AUTO_INCREMENT,
-  ADD PRIMARY KEY (id_color);
-
-ALTER TABLE materiales
-  MODIFY id_material INT AUTO_INCREMENT,
-  ADD PRIMARY KEY (id_material);
-
-ALTER TABLE productos
-  MODIFY id_producto INT AUTO_INCREMENT,
-  ADD PRIMARY KEY (id_producto),
-  ADD CONSTRAINT fk_productos_modelo  FOREIGN KEY (id_modelo) REFERENCES modelos(id_modelo),
-  ADD CONSTRAINT fk_productos_estado  FOREIGN KEY (id_estado) REFERENCES estados(id_estado),
-  ADD CONSTRAINT fk_productos_ciudad FOREIGN KEY (id_ciudad) REFERENCES ciudades(id_ciudad);
-
-ALTER TABLE imagenes_productos
-  MODIFY id_imagen_producto INT AUTO_INCREMENT,
-  ADD PRIMARY KEY (id_imagen_producto),
-  ADD CONSTRAINT fk_imgprod_producto FOREIGN KEY (id_producto) REFERENCES productos(id_producto);
-
-ALTER TABLE productos_categorias
-  MODIFY id_productos_categorias INT AUTO_INCREMENT,
-  ADD PRIMARY KEY (id_productos_categorias),
-  ADD CONSTRAINT fk_prodcat_producto  FOREIGN KEY (id_producto) REFERENCES productos(id_producto),
-  ADD CONSTRAINT fk_prodcat_categoria FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria);
-
-ALTER TABLE productos_tipos
-  MODIFY id_productos_tipos INT AUTO_INCREMENT,
-  ADD PRIMARY KEY (id_productos_tipos),
-  ADD CONSTRAINT fk_prodtipo_producto  FOREIGN KEY (id_producto) REFERENCES productos(id_producto),
-  ADD CONSTRAINT fk_prodtipo_tipo FOREIGN KEY (id_tipo) REFERENCES tipos(id_tipo);
-
-ALTER TABLE productos_tipos_venta
-  MODIFY id_productos_tipos_venta INT AUTO_INCREMENT,
-  ADD PRIMARY KEY (id_productos_tipos_venta),
-  ADD CONSTRAINT fk_prodtipoventa_producto FOREIGN KEY (id_producto) REFERENCES productos(id_producto),
-  ADD CONSTRAINT fk_prodtipoventa_tipoventa  FOREIGN KEY (id_tipo_venta) REFERENCES tipos_venta(id_tipo_venta);
-
-
-ALTER TABLE productos_colores
-  MODIFY id_productos_colores INT AUTO_INCREMENT,
-  ADD PRIMARY KEY (id_productos_colores),
-  ADD CONSTRAINT fk_prodcol_producto FOREIGN KEY (id_producto) REFERENCES productos(id_producto),
-  ADD CONSTRAINT fk_prodcol_color FOREIGN KEY (id_color) REFERENCES colores(id_color);
-
-
-ALTER TABLE productos_materiales
-  MODIFY id_productos_materiales INT AUTO_INCREMENT,
-  ADD PRIMARY KEY (id_productos_materiales),
-  ADD CONSTRAINT fk_prodmat_producto FOREIGN KEY (id_producto) REFERENCES productos(id_producto),
-  ADD CONSTRAINT fk_prodmat_material FOREIGN KEY (id_material) REFERENCES materiales(id_material);
-
-
-
-
-
---inser into: 
 -- Ciudades
 INSERT INTO ciudades (name, image) VALUES 
-('Madrid', 'madrid.jpg'),
-('Barcelona', 'barcelona.jpg'),
-('Valencia', 'valencia.jpg');
+('Madrid', '/Fashe/views/img/madrid.jpg'),
+('Barcelona', '/Fashe/views/img/barcelona.jpg'),
+('Valencia', '/Fashe/views/img/valencia.jpg'),
+('Sevilla', '/Fashe/views/img/sevilla.jpg'),
+('Bilbao', '/Fashe/views/img/bilbao.jpg'),
+('Málaga', '/Fashe/views/img/malaga.jpg');
 
 -- Marcas
 INSERT INTO marcas (name, image) VALUES 
-('Toyota', 'toyota.jpg'),
-('Ford', 'ford.jpg'),
-('BMW', 'bmw.jpg');
+('Adidas', '/Fashe/views/img/adidas.jpg'),
+('Casio', '/Fashe/views/img/casio.jpg'),
+('Gucci', '/Fashe/views/img/gucci.jpg'),
+('Nike', '/Fashe/views/img/nike.jpg'),
+('Oakley', '/Fashe/views/img/oakley.webp'),
+('Rolex', '/Fashe/views/img/rolex.jpg');
+
+-- Accesorios
+INSERT INTO accesorios (name, image, id_modelo, id_estado, id_ciudad, descripcion, precio) VALUES 
+('Ray-Ban Aviator', '/Fashe/views/img/aviator_negro.webp', 1, 1, 1, 'Gafas de sol clásicas Ray-Ban Aviator en color negro.', 120.00),
+('Oakley Holbrook', '/Fashe/views/img/holbrook_azul.jpg', 2, 1, 2, 'Gafas de sol Oakley Holbrook con protección UV.', 95.00),
+('Rolex Submariner', '/Fashe/views/img/rolex_submariner.jpg', 3, 2, 3, 'Reloj Rolex Submariner en excelente estado.', 8500.00),
+('Casio G-Shock', '/Fashe/views/img/gshock_rojo.webp', 4, 1, 4, 'Reloj deportivo Casio G-Shock resistente al agua.', 120.00),
+('Nike Air Backpack', '/Fashe/views/img/air_backpack.jpg', 5, 1, 5, 'Mochila deportiva Nike Air con amplio almacenamiento.', 60.00),
+('Adidas Classic Backpack', '/Fashe/views/img/classic_backpack.jpg', 6, 1, 6, 'Mochila Adidas de estilo casual.', 45.00),
+('Gucci GG Marmont', '/Fashe/views/img/gg_marmont.webp', 7, 1, 1, 'Collar Gucci GG Marmont con cadena de oro.', 1500.00),
+('Louis Vuitton Chain', '/Fashe/views/img/lv_chain.jpg', 8, 1, 2, 'Collar Louis Vuitton con detalles exclusivos.', 2200.00);
+
 
 -- Modelos
 INSERT INTO modelos (name, image, id_marca) VALUES 
-('Corolla', 'corolla.jpg', 1),
-('Focus', 'focus.jpg', 2),
-('X5', 'x5.jpg', 3);
+('Aviator', '/Fashe/views/img/aviator.jpg', 1),
+('Holbrook', '/Fashe/views/img/holbrook.jpg', 2),
+('Submariner', '/Fashe/views/img/submariner.jpg', 3),
+('G-Shock', '/Fashe/views/img/gshock.jpg', 4),
+('Air Backpack', '/Fashe/views/img/air_backpack.jpg', 5),
+('Classic Backpack', '/Fashe/views/img/classic_backpack.jpg', 6),
+('GG Marmont', '/Fashe/views/img/gg_marmont.jpg', 7),
+('LV Chain', '/Fashe/views/img/lv_chain.jpg', 8);
 
 -- Estados
 INSERT INTO estados (name, image) VALUES 
-('Nuevo', 'nuevo.jpg'),
-('Usado', 'usado.jpg'),
-('Reacondicionado', 'reacondicionado.jpg');
+('Nuevo', '/Fashe/views/img/nuevo.jpg'),
+('Usado', '/Fashe/views/img/usado.jpg'),
+('Reacondicionado', '/Fashe/views/img/reacondicionado.jpg');
 
 -- Categorías
 INSERT INTO categorias (name, image) VALUES 
-('Coches', 'coches.jpg'),
-('Motos', 'motos.jpg'),
-('Camiones', 'camiones.jpg');
+('Gafas de sol', '/Fashe/views/img/gafas.jpg'),
+('Relojes', '/Fashe/views/img/relojes.jpg'),
+('Mochilas', '/Fashe/views/img/mochilas.jpg'),
+('Collares', '/Fashe/views/img/collares.jpg');
 
 -- Tipos
 INSERT INTO tipos (name, image) VALUES 
-('Sedán', 'sedan.jpg'),
-('SUV', 'suv.jpg'),
-('Hatchback', 'hatchback.jpg');
+('Casual', '/Fashe/views/img/casual.jpg'),
+('Deportivo', '/Fashe/views/img/deportivo.jpg'),
+('Elegante', '/Fashe/views/img/elegante.jpg');
 
 -- Tipos de venta
 INSERT INTO tipos_venta (name, image) VALUES 
-('Venta directa', 'venta_directa.jpg'),
-('Subasta', 'subasta.jpg'),
-('Financiación', 'financiacion.jpg');
+('Venta directa', '/Fashe/views/img/venta_directa.jpg'),
+('Subasta', '/Fashe/views/img/subasta.jpg'),
+('Financiación', '/Fashe/views/img/financiacion.jpg');
 
 -- Colores
 INSERT INTO colores (name, image) VALUES 
-('Rojo', 'rojo.jpg'),
-('Azul', 'azul.jpg'),
-('Negro', 'negro.jpg');
+('Negro', '/Fashe/views/img/negro.jpg'),
+('Dorado', '/Fashe/views/img/dorado.jpg'),
+('Plata', '/Fashe/views/img/plata.jpg'),
+('Rojo', '/Fashe/views/img/rojo.jpg'),
+('Azul', '/Fashe/views/img/azul.jpg');
 
 -- Materiales
 INSERT INTO materiales (name, image) VALUES 
-('Acero', 'acero.jpg'),
-('Aluminio', 'aluminio.jpg'),
-('Fibra de carbono', 'fibra_carbono.jpg');
+('Metal', '/Fashe/views/img/metal.jpg'),
+('Cuero', '/Fashe/views/img/cuero.jpg'),
+('Plástico', '/Fashe/views/img/plastico.jpg');
 
--- Productos
-INSERT INTO productos (name, image, id_modelo, id_estado, id_ciudad, descripcion, precio) VALUES 
-('Toyota Corolla 2022', 'toyota_corolla_2022.jpg', 1, 1, 1, 'Toyota Corolla en perfecto estado, poco uso.', 20000.00),
-('Ford Focus 2019', 'ford_focus_2019.jpg', 2, 2, 2, 'Ford Focus con mantenimiento reciente, motor eficiente.', 15000.00),
-('BMW X5 2021', 'bmw_x5_2021.jpg', 3, 1, 3, 'BMW X5 con paquete premium, interiores de lujo.', 50000.00);
 
--- Imágenes de productos
-INSERT INTO imagenes_productos (name, image, id_producto, url_imagen) VALUES 
-('Vista frontal', 'toyota_corolla_frontal.jpg', 1, 'https://example.com/toyota_frontal.jpg'),
-('Vista trasera', 'ford_focus_trasero.jpg', 2, 'https://example.com/ford_trasero.jpg'),
-('Interior de lujo', 'bmw_x5_interior.jpg', 3, 'https://example.com/bmw_interior.jpg');
 
--- Productos - Categorías
-INSERT INTO productos_categorias (name, image, id_producto, id_categoria) VALUES 
-('Toyota Corolla - Coches', 'toyota_categoria.jpg', 1, 1),
-('Ford Focus - Coches', 'ford_categoria.jpg', 2, 1),
-('BMW X5 - SUVs', 'bmw_categoria.jpg', 3, 1);
+-- Imágenes de accesorios
+INSERT INTO imagenes_accesorios (name, image, id_accesorio) VALUES 
+('Frontal Ray-Ban Aviator', '/Fashe/views/img/aviator_frontal.jpg', 1),
+('Vista lateral Oakley Holbrook', '/Fashe/views/img/holbrook_lateral.jpg', 2),
+('Vista trasera Rolex Submariner', '/Fashe/views/img/rolex_lateral.jpg', 3),
+('Casio G-Shock en la muñeca', '/Fashe/views/img/gshock_muneca.jpg', 4),
+('Mochila Nike Air en acción', '/Fashe/views/img/air_backpack_accion.jpg', 5),
+('Interior de la mochila Adidas', '/Fashe/views/img/classic_backpack_interior.jpg', 6),
+('Detalle del collar Gucci', '/Fashe/views/img/gg_marmont_detalle.jpg', 7),
+('Louis Vuitton Chain en modelo', '/Fashe/views/img/lv_chain_modelo.jpg', 8);
 
--- Productos - Tipos
-INSERT INTO productos_tipos (name, image, id_producto, id_tipo) VALUES 
-('Toyota Corolla - Sedán', 'toyota_sedan.jpg', 1, 1),
-('Ford Focus - Hatchback', 'ford_hatchback.jpg', 2, 3),
-('BMW X5 - SUV', 'bmw_suv.jpg', 3, 2);
 
--- Productos - Tipos de Venta
-INSERT INTO productos_tipos_venta (name, image, id_producto, id_tipo_venta) VALUES 
-('Toyota Corolla - Venta directa', 'toyota_venta_directa.jpg', 1, 1),
-('Ford Focus - Financiación', 'ford_financiacion.jpg', 2, 3),
-('BMW X5 - Subasta', 'bmw_subasta.jpg', 3, 2);
+-- Accesorios - Categorías
+INSERT INTO accesorios_categorias (id_accesorio, id_categoria) VALUES 
+(1, 1),
+(2, 1),
+(3, 2),
+(4, 2),
+(5, 3),
+(6, 3),
+(7, 4),
+(8, 4);
 
--- Productos - Colores
-INSERT INTO productos_colores (name, image, id_producto, id_color) VALUES 
-('Toyota Corolla - Rojo', 'toyota_rojo.jpg', 1, 1),
-('Ford Focus - Azul', 'ford_azul.jpg', 2, 2),
-('BMW X5 - Negro', 'bmw_negro.jpg', 3, 3);
+-- Accesorios - Tipos
+INSERT INTO accesorios_tipos (id_accesorio, id_tipo) VALUES 
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 2),
+(5, 1),
+(6, 2),
+(7, 3),
+(8, 3);
 
--- Productos - Materiales
-INSERT INTO productos_materiales (name, image, id_producto, id_material) VALUES 
-('Toyota Corolla - Acero', 'toyota_acero.jpg', 1, 1),
-('Ford Focus - Aluminio', 'ford_aluminio.jpg', 2, 2),
-('BMW X5 - Fibra de carbono', 'bmw_fibra_carbono.jpg', 3, 3);
+-- Accesorios - Tipos de Venta
+INSERT INTO accesorios_tipos_venta (id_accesorio, id_tipo_venta) VALUES 
+(1, 1),
+(2, 1),
+(3, 3),
+(4, 1),
+(5, 2),
+(7, 3);

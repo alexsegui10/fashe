@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Card Slider - Ejemplo</title>
+
+  <style>
+    /* Estilos generales */
+
+    /* Contenedor de la sección */
+    .heater-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .heater-section h2 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Contenedor para las "tarjetas" en fila */
+    .card-slider {
+      display: flex;
+      gap: 1rem;               /* Separación horizontal entre cards */
+      overflow-x: auto;        /* Scroll horizontal automático */
+      padding-bottom: 1rem;    /* Espacio para que no se corte el scroll */
+      scroll-behavior: smooth; /* Suaviza el desplazamiento */
+    }
+
+    /* Ocultar scrollbars (opcional en desktops) */
+    .card-slider::-webkit-scrollbar {
+      display: none;
+    }
+    .card-slider {
+      -ms-overflow-style: none;  /* IE y Edge */
+      scrollbar-width: none;     /* Firefox */
+    }
+
+    /* Tarjeta individual */
+    .card {
+      flex: 0 0 180px;             /* anchura mínima (~5 cards en pantalla grande) */
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+
+    /* Imagen de la tarjeta */
+    .card img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    /* Título de la tarjeta */
+    .card h3 {
+      font-size: 1rem;
+      margin: 0.75rem 0 0.25rem;
+      font-weight: 600;
+    }
+
+    /* Texto secundario */
+    .card p {
+      font-size: 0.875rem;
+      color: #666;
+      margin: 0;
+    }
+
+    /* Opcional: Media queries para ajustar la cantidad de tarjetas mostradas según tamaño */
+    @media (min-width: 576px) {
+      .card {
+        flex: 0 0 160px;
+      }
+    }
+    @media (min-width: 992px) {
+      .card {
+        flex: 0 0 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="heater-section">
+    <h2>Calor exclusivo para tu invierno</h2>
+    
+    <!-- Contenedor que hace de “slider” horizontal -->
+    <div class="card-slider">
+      <!-- Card 1 -->
+      <div class="card">
+        <img src="/views/img/adidas.png" 
+             alt="Caldera de leña" />
+        <h3>Calderas de leña</h3>
+        <p>248 anuncios</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card">
+        <img src="https://via.placeholder.com/200x240/CCCCCC/000000?text=Radiador" 
+             alt="Radiadores" />
+        <h3>Radiadores</h3>
+        <p>74.367 anuncios</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card">
+        <img src="https://via.placeholder.com/200x240/444444/FFFFFF?text=Estufa+hierro" 
+             alt="Estufa de hierro" />
+        <h3>Estufas de hierro</h3>
+        <p>1.316 anuncios</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="card">
+        <img src="https://via.placeholder.com/200x240/222222/FFFFFF?text=Pellets" 
+             alt="Estufa de pellets" />
+        <h3>Estufas de pellets</h3>
+        <p>2.165 anuncios</p>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="card">
+        <img src="https://via.placeholder.com/200x240/555555/FFFFFF?text=Leña" 
+             alt="Estufa de leña" />
+        <h3>Estufas de leña</h3>
+        <p>5.356 anuncios</p>
+      </div>
+      <!-- Card 3 -->
+      <div class="card">
+        <img src="https://via.placeholder.com/200x240/444444/FFFFFF?text=Estufa+hierro" 
+             alt="Estufa de hierro" />
+        <h3>Estufas de hierro</h3>
+        <p>1.316 anuncios</p>
+      </div>
+            <!-- Card 3 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/200x240/444444/FFFFFF?text=Estufa+hierro" 
+                     alt="Estufa de hierro" />
+                <h3>Estufas de hierro</h3>
+                <p>1.316 anuncios</p>
+              </div>
+                    <!-- Card 3 -->
+      <div class="card">
+        <img src="https://via.placeholder.com/200x240/444444/FFFFFF?text=Estufa+hierro" 
+             alt="Estufa de hierro" />
+        <h3>Estufas de hierro</h3>
+        <p>1.316 anuncios</p>
+      </div>
+            <!-- Card 3 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/200x240/444444/FFFFFF?text=Estufa+hierro" 
+                     alt="Estufa de hierro" />
+                <h3>Estufas de hierro</h3>
+                <p>1.316 anuncios</p>
+              </div>
+                    <!-- Card 3 -->
+      <div class="card">
+        <img src="https://via.placeholder.com/200x240/444444/FFFFFF?text=Estufa+hierro" 
+             alt="Estufa de hierro" />
+        <h3>Estufas de hierro</h3>
+        <p>1.316 anuncios</p>
+      </div>
+      <!-- Puedes añadir más .card según necesites -->
+    </div>
+  </section>
+
+</body>
+</html>

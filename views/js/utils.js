@@ -7,11 +7,11 @@ function ajaxpromise(stype, surl, sdata, sdatatype){
         data: sdata,
         dataType: sdatatype
         }).done((data) => {
-            alert("si");
+            console.log(data);
             resolve(data);
         }).fail((jqXHR, textStatus, errorThrow) => {
-            alert("no");
             reject(errorThrow);
         }); 
     });
 }
+
