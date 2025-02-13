@@ -9,7 +9,7 @@ function cargarciudad() {
           <article class="card__article">
             <img class="card__img" src="${data[row].image}" alt="${data[row].name}">
             <div class="card__data">
-               <span class="card__description">324 articulos</span>
+               <span class="card__description">${data[row].nproductos} productos</span>
                <h2 class="card__title">${data[row].name}</h2>
                <a href="#" class="card__button">Ver Mas</a>
             </div>
@@ -24,7 +24,7 @@ function cargarciudad() {
         dots: false,          
         arrows: true,     
         autoplay: true,
-        autoplaySpeed: 3000,    
+        autoplaySpeed: 3000,   
         prevArrow: '<button class="arrow-slick2 prev-slick2 slick-prev"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
         nextArrow: '<button class="arrow-slick2 next-slick2 slick-next"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
         responsive: [
@@ -65,7 +65,7 @@ function cargarprecio() {
           <article class="card__article">
             <img class="card__img" src="${data[row].image}" alt="${data[row].name}">
             <div class="card__data">
-               <span class="card__description">324 articulos</span>
+               <span class="card__description">${data[row].nproductos} productos</span>
                <h2 class="card__title">${data[row].name}</h2>
                <a href="#" class="card__button">Ver Mas</a>
             </div>

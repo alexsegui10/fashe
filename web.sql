@@ -8,11 +8,28 @@ CREATE TABLE ciudades (
   image VARCHAR(255)
 );
 
+CREATE TABLE accesorios (
+  id_accesorio INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  image VARCHAR(255),
+  id_modelo INT,
+  id_estado INT,
+  id_ciudad INT,
+  id_marca INT,
+  descripcion TEXT,
+  precio DECIMAL(10,2),
+  FOREIGN KEY (id_modelo) REFERENCES modelos(id_modelo),
+  FOREIGN KEY (id_estado) REFERENCES estados(id_estado),
+  FOREIGN KEY (id_ciudad) REFERENCES ciudades(id_ciudad),
+  FOREIGN KEY (id_marca) REFERENCES marcas(id_marca)
+);
+
 CREATE TABLE marcas (
   id_marca INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100),
   image VARCHAR(255)
 );
+
 
 CREATE TABLE modelos (
   id_modelo INT AUTO_INCREMENT PRIMARY KEY,
@@ -58,19 +75,6 @@ CREATE TABLE materiales (
   image VARCHAR(255)
 );
 
-CREATE TABLE accesorios (
-  id_accesorio INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100),
-  image VARCHAR(255),
-  id_modelo INT,
-  id_estado INT,
-  id_ciudad INT,
-  descripcion TEXT,
-  precio DECIMAL(10,2),
-  FOREIGN KEY (id_modelo) REFERENCES modelos(id_modelo),
-  FOREIGN KEY (id_estado) REFERENCES estados(id_estado),
-  FOREIGN KEY (id_ciudad) REFERENCES ciudades(id_ciudad)
-);
 
 CREATE TABLE imagenes_accesorios (
   id_imagen_accesorio INT AUTO_INCREMENT PRIMARY KEY,
@@ -134,15 +138,16 @@ INSERT INTO marcas (name, image) VALUES
 ('Rolex', '/Fashe/views/img/rolex.jpg');
 
 -- Accesorios
-INSERT INTO accesorios (name, image, id_modelo, id_estado, id_ciudad, descripcion, precio) VALUES 
-('Ray-Ban Aviator', '/Fashe/views/img/aviator_negro.webp', 1, 1, 1, 'Gafas de sol clásicas Ray-Ban Aviator en color negro.', 120.00),
-('Oakley Holbrook', '/Fashe/views/img/holbrook_azul.jpg', 2, 1, 2, 'Gafas de sol Oakley Holbrook con protección UV.', 95.00),
-('Rolex Submariner', '/Fashe/views/img/rolex_submariner.jpg', 3, 2, 3, 'Reloj Rolex Submariner en excelente estado.', 8500.00),
-('Casio G-Shock', '/Fashe/views/img/gshock_rojo.webp', 4, 1, 4, 'Reloj deportivo Casio G-Shock resistente al agua.', 120.00),
-('Nike Air Backpack', '/Fashe/views/img/air_backpack.jpg', 5, 1, 5, 'Mochila deportiva Nike Air con amplio almacenamiento.', 60.00),
-('Adidas Classic Backpack', '/Fashe/views/img/classic_backpack.jpg', 6, 1, 6, 'Mochila Adidas de estilo casual.', 45.00),
-('Gucci GG Marmont', '/Fashe/views/img/gg_marmont.webp', 7, 1, 1, 'Collar Gucci GG Marmont con cadena de oro.', 1500.00),
-('Louis Vuitton Chain', '/Fashe/views/img/lv_chain.jpg', 8, 1, 2, 'Collar Louis Vuitton con detalles exclusivos.', 2200.00);
+INSERT INTO accesorios (name, image, id_modelo, id_estado, id_ciudad, id_marca, descripcion, precio) VALUES
+('Ray-Ban Aviator', '/Fashe/views/img/aviator_negro.webp', 1, 1, 1, 1, 'Gafas de sol clásicas Ray-Ban Aviator en color negro.', 120.00),
+('Oakley Holbrook', '/Fashe/views/img/holbrook_azul.jpg', 2, 1, 2, 2, 'Gafas de sol Oakley Holbrook con protección UV.', 95.00),
+('Rolex Submariner', '/Fashe/views/img/rolex_submariner.jpg', 3, 2, 3, 3, 'Reloj Rolex Submariner en excelente estado.', 8500.00),
+('Casio G-Shock', '/Fashe/views/img/gshock_rojo.webp', 4, 1, 4, 4, 'Reloj deportivo Casio G-Shock resistente al agua.', 120.00),
+('Nike Air Backpack', '/Fashe/views/img/air_backpack.jpg', 5, 1, 5, 5, 'Mochila deportiva Nike Air con amplio almacenamiento.', 60.00),
+('Adidas Classic Backpack', '/Fashe/views/img/classic_backpack.jpg', 6, 1, 6, 6, 'Mochila Adidas de estilo casual.', 45.00),
+('Gucci GG Marmont', '/Fashe/views/img/gg_marmont.webp', 7, 1, 1, 2, 'Collar Gucci GG Marmont con cadena de oro.', 1500.00),
+('Louis Vuitton Chain', '/Fashe/views/img/lv_chain.jpg', 8, 1, 2, 1, 'Collar Louis Vuitton con detalles exclusivos.', 2200.00);
+
 
 
 -- Modelos

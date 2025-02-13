@@ -103,7 +103,7 @@
   display: block;
   width: 300px;
   max-width: 328px;   /* Controla el ancho máximo para que no se distorsione */
-  height: 280px;      /* Ajusta según necesites */
+  height: 380px;      /* Ajusta según necesites */
   border-radius: 1.5rem;
   object-fit: cover;  /* Corta la imagen sin deformarla */
   margin: 0 auto;     /* Centra la imagen dentro del slide */

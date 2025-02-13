@@ -6,7 +6,7 @@
 		
 
 		function select_productos_precio(){
-			$sql = "SELECT * FROM marcas";
+			$sql = "SELECT m.name, m.image,(SELECT COUNT(c.id_accesorio) FROM accesorios as c WHERE c.id_marca = m.id_marca ) as nproductos FROM `marcas` as m;";
 			$conexion = connect::con();
 			$res = mysqli_query($conexion, $sql);
 			$array_resultados = array();
@@ -31,7 +31,7 @@
 		}
 
 		function select_producto_ciudad(){
-			$sql = "SELECT * FROM ciudades ";
+			$sql = "SELECT c.name, c.image,(SELECT COUNT(a.id_accesorio) FROM accesorios as a WHERE a.id_ciudad = c.id_ciudad ) as nproductos FROM `ciudades` as c;";
 			$conexion = connect::con();
 			$res = mysqli_query($conexion, $sql);
 			$array_resultados = array();
@@ -47,3 +47,4 @@
 		
 
 	}
+	
