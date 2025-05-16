@@ -1,8 +1,6 @@
 <?php
     class controller_home {
         public function view() {
-            echo "<p>VIEW_PATH_INC = " . VIEW_PATH_INC . "</p>";
-            echo "<p>VIEW_HOME     = " . VIEW_HOME . "</p>";
             common::load_view('top-page_home.html', VIEW_HOME . 'home.html');
         }
          public function carrusel_ciudad() {

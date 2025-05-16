@@ -8,6 +8,7 @@
         public static function load_error() {
             require_once (VIEW_PATH_INC . 'top-page_home.html');
             require_once (VIEW_PATH_INC . 'header.html');
+            include("module/auth/view/auth.html");
             require_once (VIEW_PATH_INC . 'error404.html');
             require_once (VIEW_PATH_INC . 'footer.html');
         }
@@ -19,6 +20,7 @@
             if ((file_exists($topPage)) && (file_exists($view))) {
                 require_once ($topPage);
                 require_once (VIEW_PATH_INC . 'header.html');
+                include("module/auth/view/auth.html");
                 require_once ($view);
                 require_once (VIEW_PATH_INC . 'footer.html');
                 require_once (VIEW_PATH_INC . 'end-page.html');

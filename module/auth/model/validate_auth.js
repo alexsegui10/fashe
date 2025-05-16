@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function login(){
   if (validate_login() == true) {
     var data = $('#login_form').serialize();
-    ajaxpromise('POST', 'module/auth/controller/controller_auth.php?op=login', data, 'json')
+    ajaxpromise('POST', 'index.php?module=auth&op=login', data, 'json')
     .then(function (result) {
       console.log("resultado", result);
       if(result == 'error_correo' || result == 'error_passwd'){
@@ -92,7 +92,7 @@ function login(){
 function register(){
   if (validate_register() == true) {
     var data = $('#register_form').serialize();
-    ajaxpromise('POST', 'module/auth/controller/controller_auth.php?op=register', data, 'json')
+    ajaxpromise('POST', 'index.php?module=auth&op=register', data, 'json')
     .then(function (result) {
       if(result == 'error_correo'){ 
         document.getElementById('emailerror1').innerHTML = 'El correo ya existe';

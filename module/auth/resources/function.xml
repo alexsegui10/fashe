@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+  <function><name>register</name><uri>register</uri></function>
+  <function><name>login</name><uri>login</uri></function>
+  <function><name>dataUser</name><uri>data_user</uri></function>
+  <function><name>actividad</name><uri>actividad</uri></function>
+  <function><name>controlUser</name><uri>controluser</uri></function>
+  <function><name>refreshToken</name><uri>refresh_token</uri></function>
+  <function><name>refreshCookie</name><uri>refresh_cookie</uri></function>
+</functions>
