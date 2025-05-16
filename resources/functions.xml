@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+    <!-- Módulo HOME -->
+    <function><name>select_productos_precio</name><module>home</module></function>
+    <function><name>select_categorias</name><module>home</module></function>
+    <function><name>select_categorias_visitado</name><module>home</module></function>
+    <function><name>select_producto_ciudad</name><module>home</module></function>
+    <function><name>select_rating</name><module>home</module></function>
+
+    <!-- Módulo SHOP -->
+    <function><name>select_productos_list</name><module>shop</module></function>
+    <function><name>select_count_productos_list</name><module>shop</module></function>
+    <function><name>select_details_producto</name><module>shop</module></function>
+    <function><name>select_city</name><module>shop</module></function>
+    <function><name>select_marcas</name><module>shop</module></function>
+    <function><name>select_estados</name><module>shop</module></function>
+    <function><name>select_all_categorias</name><module>shop</module></function>
+    <function><name>select_tipo_formato</name><module>shop</module></function>
+    <function><name>select_images_producto</name><module>shop</module></function>
+    <function><name>select_categorias</name><module>shop</module></function>
+    <function><name>print_filters</name><module>shop</module></function>
+    <function><name>filters</name><module>shop</module></function>
+    <function><name>update_categoria_visitados</name><module>shop</module></function>
+    <function><name>count_filters</name><module>shop</module></function>
+    <function><name>select_extras_icono</name><module>shop</module></function>
+    <function><name>select_accesorios_relacionados</name><module>shop</module></function>
+    <function><name>select_complementos_relacionados</name><module>shop</module></function>
+    <function><name>count_complementos_relacionados</name><module>shop</module></function>
+    <function><name>contar_accesorios_relacionados</name><module>shop</module></function>
+    <function><name>select_like</name><module>shop</module></function>
+    <function><name>add_like</name><module>shop</module></function>
+    <function><name>remove_like</name><module>shop</module></function>
+    <function><name>count_likes</name><module>shop</module></function>
+    <function><name>select_likes_usuario</name><module>shop</module></function>
+
+    <!-- Módulo SEARCH -->
+    <function><name>buscar_marca</name><module>search</module></function>
+    <function><name>buscar_categoria</name><module>search</module></function>
+    <function><name>buscar_marca_por_categoria</name><module>search</module></function>
+    <function><name>buscar_ciudad_por_marca_y_caregoria</name><module>search</module></function>
+    <function><name>buscar_ciudad_por_marca</name><module>search</module></function>
+    <function><name>buscar_ciudad_por_categoria</name><module>search</module></function>
+    <function><name>search_category_null</name><module>search</module></function>
+    <function><name>search_category</name><module>search</module></function>
+    <function><name>select_only_brand</name><module>search</module></function>
+    <function><name>select_only_category</name><module>search</module></function>
+    <function><name>select_brand_category</name><module>search</module></function>
+    <function><name>select_city</name><module>search</module></function>
+
+    <!-- Módulo AUTH -->
+    <function><name>select_email</name><module>auth</module></function>
+    <function><name>insert_user</name><module>auth</module></function>
+    <function><name>select_user</name><module>auth</module></function>
+</functions>

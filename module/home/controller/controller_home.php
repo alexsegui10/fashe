@@ -9,7 +9,7 @@
     
     switch($_GET['op']){
         case 'list';
-        include("views/html/home.html");
+        include("module/home/view/home.html");
         break;
  
         case 'prueba';
@@ -54,6 +54,45 @@
             try{
                 $daohome = new DAOHome();
                 $rdo = $daohome->select_categorias();
+                }catch (Exception $e){
+                    echo json_encode("error");
+                    exit;
+                }
+                if(!$rdo){
+                    echo json_encode("error");
+                    exit;
+            }else{
+                    echo json_encode($rdo);
+                    //echo json_encode("error");
+                    exit;
+            } 
+
+
+            
+
+            case 'categorias_visitado';
+            try{
+                $daohome = new DAOHome();
+                $rdo = $daohome->select_categorias_visitado();
+                }catch (Exception $e){
+                    echo json_encode("error");
+                    exit;
+                }
+                if(!$rdo){
+                    echo json_encode("error");
+                    exit;
+            }else{
+                    echo json_encode($rdo);
+                    //echo json_encode("error");
+                    exit;
+            } 
+
+
+            
+            case 'rating';
+            try{
+                $daohome = new DAOHome();
+                $rdo = $daohome->select_rating();
                 }catch (Exception $e){
                     echo json_encode("error");
                     exit;

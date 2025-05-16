@@ -1,0 +1,1245 @@
+.imagen-fija {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+.slick-carousel .slick-slide {
+  text-align: center;
+}
+
+.imagen-fija-grande {
+  width: 600px;
+  height: 500px;
+  object-fit: contain;
+}
+.imagen-fija-small {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+.imagen-fija-1 {
+  width: 350px;
+  height: 250px;
+  display: block;
+  margin: 0 auto;
+}
+.cards-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.card img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.card {
+  margin: 0 0.5em;
+  box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+  border: none;
+}
+.carousel-inner {
+  padding: 1em;
+}
+.carousel-control-prev,
+.carousel-control-next {
+  background-color: #e1e1e1;
+  width: 5vh;
+  height: 5vh;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+@media (min-width: 768px) {
+  .card img {
+    height: 11em;
+  }
+}
+
+
+
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+/*========== Colors ==========*/
+/*Color mode HSL(hue, saturation, lightness)*/
+--first-color: hsl(82, 60%, 28%);
+--title-color: hsl(0, 0%, 15%);
+--text-color: hsl(0, 0%, 35%);
+--body-color: hsl(0, 0%, 95%);
+--container-color: hsl(0, 0%, 100%);
+
+/*========== Font and typography ==========*/
+/*.5rem = 8px | 1rem = 16px ...*/
+--body-font: "Poppins", sans-serif;
+--h2-font-size: 1.25rem;
+--small-font-size: .813rem;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1120px) {
+:root {
+  --h2-font-size: 1.5rem;
+  --small-font-size: .875rem;
+}
+}
+
+/*=============== BASE ===============*/
+
+
+/*=============== CARD ===============*/
+.container-cards {
+/* En lugar de usar grid, dejamos un contenedor normal */
+width: 100%;
+max-width: 1300px;      /* Ajusta el ancho máximo a tu gusto */
+margin: 0 auto;         /* Centra el contenedor */
+padding: 5rem 1.5rem;   /* Espaciado superior/inferior y laterales */
+}
+
+/* Este contenedor lo maneja Slick; quitamos grid */
+.card__container {
+display: block;   /* Sobrescribimos 'display: grid' */
+/* No definas row-gap o column-gap aquí; Slick se encarga del reparto */
+}
+
+/* Cada artículo (tarjeta) */
+.card__article {
+position: relative;
+overflow: hidden; /* para el efecto de hover en .card__data */
+/* Si lo deseas, podrías añadir un margin interno para separar slides */
+/* margin: 0 1rem; */
+}
+
+/* Imagen de la tarjeta */
+.card__img {
+display: block;
+width: 300px;
+max-width: 328px;   /* Controla el ancho máximo para que no se distorsione */
+height: 380px;      /* Ajusta según necesites */
+border-radius: 1.5rem;
+object-fit: cover;  /* Corta la imagen sin deformarla */
+margin: 0 auto;     /* Centra la imagen dentro del slide */
+}
+
+/* Contenedor de los datos que aparece al hover */
+.card__data {
+width: 280px;
+background-color: var(--container-color, #fff);
+padding: 1.5rem 2rem;
+box-shadow: 0 8px 24px hsla(0, 0%, 0%, .15);
+border-radius: 1rem;
+position: absolute;
+bottom: -9rem;
+left: 0;   /* Para centrar horizontalmente con margin: auto */
+right: 0;
+margin-inline: auto;
+opacity: 0;
+transition: opacity 1s 1s;
+}
+
+.card__description {
+display: block;
+font-size: var(--small-font-size, 0.875rem);
+margin-bottom: .25rem;
+}
+
+.card__title {
+font-size: var(--h2-font-size, 1.5rem);
+font-weight: 500;
+color: var(--title-color, #333);
+margin-bottom: .75rem;
+}
+
+.card__button {
+text-decoration: none;
+font-size: var(--small-font-size, 0.875rem);
+font-weight: 500;
+color: var(--first-color, #1a73e8);
+}
+
+.card__button:hover {
+text-decoration: underline;
+}
+
+/* Efectos hover */
+.card__article:hover .card__data {
+animation: show-data 1s forwards;
+opacity: 1;
+transition: opacity .3s;
+}
+
+.card__article:hover {
+animation: remove-overflow 2s forwards;
+}
+
+.card__article:not(:hover) {
+animation: show-overflow 2s forwards;
+}
+
+.card__article:not(:hover) .card__data {
+animation: remove-data 1s forwards;
+}
+
+/* Animaciones de la tarjeta */
+@keyframes show-data {
+50% {
+  transform: translateY(-10rem);
+}
+100% {
+  transform: translateY(-7rem);
+}
+}
+
+@keyframes remove-overflow {
+to {
+  overflow: initial;
+}
+}
+
+@keyframes remove-data {
+0% {
+  transform: translateY(-7rem);
+}
+50% {
+  transform: translateY(-10rem);
+}
+100% {
+  transform: translateY(.5rem);
+}
+}
+
+@keyframes show-overflow {
+0% {
+  overflow: initial;
+  pointer-events: none;
+}
+50% {
+  overflow: hidden;
+}
+}
+
+/*=============== TITULO ===============*/
+.titulo_a {
+font-family: 'Poppins', sans-serif;
+font-size: 2rem;
+font-weight: 800;
+text-align: center;
+color: #333;
+margin-bottom: 1rem;
+}
+
+/*=============== BREAKPOINTS ===============*/
+
+/* Dispositivos muy pequeños (hasta 340px) */
+@media screen and (max-width: 340px) {
+.container-cards {
+  padding: 5rem 1rem;
+}
+
+.card__data {
+  width: 250px;
+  padding: 1rem;
+}
+}
+
+/* Dispositivos medianos (desde 768px) */
+/* Slick se encargará de slidesToShow:2 en 768px, pero si quieres 
+ un grid fallback sin slick, podrías configurar algo aquí. */
+@media screen and (min-width: 768px) {
+/* tu css adicional */
+}
+
+/* Dispositivos grandes (desde 1120px) */
+/* Slick se encargará de slidesToShow:4, no hace falta forzar nada aquí */
+@media screen and (min-width: 1120px) {
+/* tu css adicional */
+}
+.slick-prev,
+.slick-next {
+position: absolute;
+top: 50%; 
+transform: translateY(-50%); 
+font-size: 2rem;      /* Tamaño de la flecha (texto) */
+background: none;     /* Sin fondo */
+border: none;         /* Sin borde */
+cursor: pointer;      /* Cursor “mano” */
+z-index: 2;           /* Que no se tapen detrás de las imágenes */
+}
+.product-features {
+display: flex;
+flex-wrap: wrap; 
+gap: 12px;
+width: 100%;
+font-family: Arial, sans-serif;
+}
+
+.feature-item {
+display: flex;
+align-items: center;
+padding: 10px;
+border-radius: 12px;
+gap: 10px;
+transition: background 0.2s ease-in-out;
+flex: 0 1 calc(50% - 6px); 
+}
+
+.feature-icon {
+width: 40px;
+height: 40px;
+display: flex;
+justify-content: center;
+align-items: center;
+background: #E5E7EB; /* Fondo más claro para el icono */
+border-radius: 10px;
+}
+
+.feature-icon i {
+font-size: 20px;
+color: #374151; /* Color oscuro para mejor contraste */
+}
+
+.feature-text {
+display: flex;
+flex-direction: column;
+}
+
+.feature-title {
+font-size: 14px;
+font-weight: bold;
+color: #1F2937;
+margin: 0;
+}
+
+.feature-subtitle {
+font-size: 12px;
+color: #6B7280;
+margin: 0;
+}
+
+.feature-item:hover {
+background: #E5E7EB;
+}
+
+.slick-prev {
+left: 0;   
+margin-left: 1rem; 
+}
+
+
+.slick-next {
+right: 0;  
+margin-right: 1rem;
+}
+
+.slick-slide {
+padding: 0 1rem;  
+}
+
+
+.slick-list {
+margin: 0 -1rem; 
+}
+
+
+.slick-dots {
+display: flex !important;
+justify-content: center;
+padding: 10px 0;
+list-style: none;
+}
+
+.slick-dots li {
+width: 10px;
+height: 10px;
+background: gray; 
+border-radius: 50%;
+margin: 0 5px;
+cursor: pointer;
+text-indent: -9999px; 
+}
+
+.slick-dots li.slick-active {
+background: black; 
+}
+
+.slick-dots li button {
+display: none; 
+}
+.filters {
+display: flex;
+justify-content: center;
+gap: 15px;
+padding: 15px;
+border-radius: 10px;
+}
+select, button {
+padding: 10px;
+border-radius: 5px;
+border: 1px solid #ccc;
+font-size: 14px;
+}
+.filter_button {
+background-color: #28a745;
+color: white;
+cursor: pointer;
+}
+.filter_remove {
+background-color: #dc3545;
+color: white;
+cursor: pointer;
+}
+
+/* Estilos para el contenedor principal dentro del modal */
+#details_modal {
+font-family: Arial, sans-serif;
+color: #333;
+/* Aquí puedes ajustar padding, márgenes, etc. si lo deseas */
+padding: 20px;
+}
+
+/* Contenedor donde se renderizan los filtros */
+#container_filtros {
+margin-top: 10px;
+}
+
+/* Botón que abre el modal */
+#modal_filtros {
+background: #017efa;
+border: none;
+color: #fff;
+padding: 6px 15px;
+font-size: 14px;
+border-radius: 4px;
+cursor: pointer;
+transition: background 0.3s;
+outline: none; /* Opcional */
+}
+
+#modal_filtros:hover {
+background: #0168ce;
+}
+
+/* Botones internos (los que se generan con jQuery UI) 
+ Aplica solamente a los que tengan estas clases personalizadas */
+.filter_button {
+background: #017efa !important; /* !important para sobreescribir estilos jQuery UI */
+border: none !important;
+color: #fff !important;
+padding: 6px 15px;
+border-radius: 4px;
+cursor: pointer;
+font-size: 14px;
+transition: background 0.3s;
+}
+
+.filter_button:hover {
+background: #0168ce !important;
+}
+
+.filter_remove {
+background: #dc3545 !important;
+border: none !important;
+color: #fff !important;
+padding: 6px 15px;
+border-radius: 4px;
+cursor: pointer;
+font-size: 14px;
+transition: background 0.3s;
+}
+
+.filter_remove:hover {
+background: #c82333 !important;
+}
+
+/* Estilos generales para los elementos de filtro */
+.filter_select,
+.filter_checkbox,
+.filter_radio {
+margin-bottom: 15px;
+display: block;
+}
+
+.filter_select select {
+width: 100%;
+padding: 6px;
+border: 1px solid #ccc;
+border-radius: 4px;
+outline: none;
+font-size: 14px;
+}
+
+/* Para checkbox y radio, ajusta como desees */
+.filter_checkbox label,
+.filter_radio label {
+display: inline-block;
+margin-right: 10px;
+cursor: pointer;
+font-size: 14px;
+}
+
+
+/* Contenedor general de los filtros */
+.filter-container {
+background-color: #fff;
+border-radius: 8px;
+padding: 20px;
+max-width: 600px; /* Ajusta según el espacio que desees */
+margin: 0 auto;   /* Centrado horizontal */
+font-family: Arial, sans-serif;
+}
+
+/* Título principal (“Filtros”) */
+.filter-container .filter-title {
+font-size: 1.5rem;
+font-weight: 600;
+margin-bottom: 1rem;
+color: #333;
+}
+
+/* Pequeña franja o bloque gris para secciones destacadas (como “¿Dónde buscas?”) */
+.filter-section-header {
+background-color: #f9f9f9;
+border-radius: 8px;
+padding: 1rem;
+font-size: 1rem;
+font-weight: 500;
+margin-bottom: 1rem;
+color: #333;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+/* Estilo para un icono o flecha si lo quisieras a la derecha */
+.filter-section-header .section-icon {
+font-size: 1.2rem;
+color: #999;
+}
+
+/* Título de bloque “Transacción”, “Tipos de inmueble”, “Tipo de construcción”, etc. */
+.filter-subtitle {
+font-size: 1rem;
+font-weight: 600;
+margin: 1rem 0 0.5rem 0;
+color: #333;
+}
+
+/* Línea divisoria sutil entre secciones */
+.filter-divider {
+width: 100%;
+height: 1px;
+background-color: #eee;
+margin: 1.5rem 0;
+}
+
+/* Fila para situar varios filtros en horizontal (ej. “Transacción” y “Tipos de inmueble”) */
+.filter-row {
+display: flex;
+flex-wrap: wrap;
+gap: 1rem; /* Espacio entre columnas */
+}
+
+/* Cada “columna” dentro de la fila de filtros */
+.filter-col {
+flex: 1 1 0;   /* Se expandirá proporcionalmente */
+min-width: 120px;
+}
+
+/* Input select (similar a la vista del ejemplo) */
+.filter-select {
+width: 100%;
+background-color: #fff;
+border: 1px solid #ccc;
+color: #333;
+border-radius: 6px;
+padding: 0.5rem 0.75rem;
+font-size: 1rem;
+cursor: pointer;
+appearance: none; /* Para ocultar el icono por defecto del select en algunos navegadores */
+background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D'10'%20height%3D'6'%20viewBox%3D'0%200%2010%206'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M0%200l5%205l5-5'%20fill%3D'%23333'%2F%3E%3C/svg%3E");
+background-repeat: no-repeat;
+background-position: right 0.75rem center;
+background-size: 10px 6px;
+}
+
+.filter-select:focus {
+outline: 2px solid #4f46e5; /* Borde resaltado al enfocar, color a tu gusto */
+}
+
+/* Etiquetas de checkbox/radio */
+
+.filter-checkbox label,
+.filter-radio label {
+font-size: 1rem;
+color: #333;
+margin-left: 0.5rem;
+cursor: pointer;
+}
+
+.filter-checkbox input[type="checkbox"],
+.filter-radio input[type="radio"] {
+transform: scale(1.2);
+cursor: pointer;
+}
+
+/* Sección de “Precio” y inputs de mínimo / máximo (similares a los selects) */
+.filter-input {
+width: 100%;
+border: 1px solid #ccc;
+border-radius: 6px;
+padding: 0.5rem 0.75rem;
+font-size: 1rem;
+color: #333;
+}
+
+.filter-input:focus {
+outline: 2px solid #4f46e5;
+}
+
+/* Barra inferior con los botones (Borrar, Mostrar X anuncios, etc.) */
+.filter-footer {
+position: sticky; /* O fija al pie si tu contenedor es scrollable */
+bottom: 0;
+left: 0;
+right: 0;
+background-color: #fff;
+padding: 1rem 0;
+display: flex;
+justify-content: space-between;
+align-items: center;
+border-top: 1px solid #eee;
+margin-top: 1rem;
+}
+
+/* Botón “Borrar” */
+.filter-footer .filter-clear {
+background: none;
+border: none;
+color: #6366f1; /* Un color azul/violeta */
+font-size: 1rem;
+cursor: pointer;
+padding: 0.5rem 1rem;
+}
+
+.filter-footer .filter-clear:hover {
+text-decoration: underline;
+}
+
+/* Botón principal “Mostrar 235 anuncios” */
+.filter-footer .filter-apply {
+background-color: #4f46e5;
+color: #fff;
+font-size: 1rem;
+border: none;
+border-radius: 6px;
+padding: 0.6rem 1.2rem;
+font-weight: 600;
+cursor: pointer;
+}
+
+.filter-footer .filter-apply:hover {
+background-color: #4338ca;
+}
+#map { height: 500px; }
+
+
+  /* Para asegurarnos de ocupar toda la ventana */
+  .container-fluid,
+  .row {
+    height: 100%; /* la fila abarcará el 100% del viewport */
+  }
+
+  /* A la columna de productos le damos scroll interno */
+  .scrollable-products {
+    max-height: 100%;
+    overflow-y: auto; /* Aquí se crea el scroll local */
+  }
+
+  /* Columna del mapa */
+  .map-container {
+    position: relative;
+    height: 100%;
+    /* Si quieres que el mapa esté ‘pegado’ mientras haya scroll en la izquierda,
+       puedes añadir sticky aquí. Pero ojo: sticky sólo funciona si su padre
+       (la columna) no tiene overflow o altura limitada. */
+    /* position: sticky;
+    top: 0; */
+  }
+
+  #map {
+    width: 100%;
+    height: 100%;
+    background: #ddd; /* solo para visualizar */
+  }
+
+
+/* Grupo de filtros */
+.filter-group {
+display: flex;
+flex-direction: column;
+margin-bottom: 20px;
+text-align: left;
+}
+
+/* Etiqueta del filtro */
+.filter-label {
+font-size: 16px;
+font-weight: 600;
+margin-bottom: 8px;
+text-transform: capitalize;
+}
+
+/* Estilos para selects */
+.filter-select {
+padding: 8px;
+border: 1px solid #ccc;
+border-radius: 5px;
+font-size: 14px;
+width: 100%;
+}
+
+/* Opciones checkbox y radio bien alineadas */
+.filter-option {
+display: flex;
+align-items: center;
+margin-bottom: 5px;
+}
+
+.filter-option input[type="checkbox"],
+.filter-option input[type="radio"] {
+margin-right: 10px;
+transform: scale(1.2);
+}
+
+/* Botones del modal personalizados */
+.swal2-confirm {
+background-color: #007BFF !important;
+color: white !important;
+font-weight: 500;
+}
+
+.swal2-deny {
+background-color: #DC3545 !important;
+color: white !important;
+}
+
+.swal2-cancel {
+background-color: #6C757D !important;
+color: white !important;
+}
+
+/* Añadir scroll si hay muchos filtros */
+.swal2-html-container {
+max-height: 500px;
+overflow-y: auto;
+}
+.filter-checkbox {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 10px;
+}
+
+.filter-option {
+display: flex;
+align-items: center;
+margin-bottom: 5px;
+}
+
+.ciudad_auto_resultados {
+position: absolute;
+top: 100%;
+left: 0;
+z-index: 999;
+background: white;
+border: 1px solid #ddd;
+width: 100%;
+max-height: 200px;
+overflow-y: auto;
+box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+}
+
+.searchElement {
+padding: 10px;
+cursor: pointer;
+}
+
+.searchElement:hover {
+background-color: #f0f0f0;
+}
+.active-page {
+background-color: #333;
+color: white;
+font-weight: bold;
+}
+
+/* Contenedor general */
+.productos-relacionados-container {
+margin: 30px 0;
+max-width: 1200px;
+margin-left: auto;
+margin-right: auto;
+}
+
+
+.related-products-grid{
+
+margin: 30px 0;
+max-width: 1200px;
+margin-left: auto;
+margin-right: auto;
+}
+
+/* Grid para mostrar productos de 4 en 4 */
+.related-products-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 30px;
+}
+
+/* Cada producto ocupa todo el ancho del grid */
+.related-products-grid .block2 {
+width: 100%; /* importante para que use todo el espacio de la columna */
+}
+
+
+
+.related-products-grid2{
+
+  margin: 30px 0;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  }
+  
+  /* Grid para mostrar productos de 4 en 4 */
+  .related-products-grid2 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  }
+  
+  /* Cada producto ocupa todo el ancho del grid */
+  .related-products-grid2 .block2 {
+  width: 100%; /* importante para que use todo el espacio de la columna */
+  }
+
+/* Estilo para el botón */
+.ver-mas-container {
+text-align: center;
+}
+
+#ver-mas-btn {
+padding: 10px 25px;
+border: none;
+background-color: #333;
+color: white;
+border-radius: 20px;
+cursor: pointer;
+font-size: 16px;
+transition: background-color 0.3s ease;
+}
+
+#ver-mas-btn:hover {
+background-color: #555;
+}
+
+
+
+
+
+
+.hidden {
+display: none !important;
+}
+
+.auth-modal {
+position: fixed;
+inset: 0;
+background: rgba(52, 54, 66, 0.9);
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 999;
+font-family: 'PT Sans', sans-serif;
+}
+
+.auth-modal-container {
+background: #fff;
+width: 90%;
+max-width: 500px;
+padding: 40px;
+padding-top: 0px;
+border-radius: 5px;
+position: relative;
+box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.auth-switcher {
+display: flex;
+justify-content: space-between;
+margin-bottom: 30px;
+border-bottom: 1px solid #eee;
+}
+
+.auth-switcher li {
+flex: 1;
+text-align: center;
+list-style: none;
+}
+
+.auth-switcher .switch {
+display: block;
+padding: 15px 10px;
+color: #809191;
+background: #f7f7f7;
+text-decoration: none;
+font-size: 16px;
+border-radius: 4px 4px 0 0;
+cursor: pointer;
+border: 1px solid #eee;
+border-bottom: none;
+}
+
+.auth-switcher .selected {
+background: #e0e6e6;
+color: #606060;
+font-weight: bold;
+}
+
+.auth-form input:not([type="submit"]):not([type="checkbox"]) {
+width: 195%;
+padding: 15px;
+margin-bottom: 15px;
+border: 1px solid #ddd;
+border-radius: 4px;
+box-sizing: border-box;
+font-size: 15px;
+box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.auth-form input::placeholder {
+color: #aaa;
+}
+
+.auth-form label {
+font-size: 14px;
+color: #505260;
+margin-bottom: 20px;
+display: flex;
+align-items: center;
+}
+
+.auth-form label input[type="checkbox"] {
+margin-right: 10px;
+}
+
+.auth-form label a {
+color: #2f889a;
+text-decoration: none;
+}
+
+.submit-btn {
+width: 100%;
+padding: 15px;
+background: #2f889a !important;
+color: white;
+font-size: 16px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+box-shadow: 0 2px 5px rgba(47, 136, 154, 0.4);
+transition: background 0.3s ease;
+}
+.auth-form input[type="submit"].submit-btn {
+width: 100%;
+padding: 15px;
+background: #2f889a !important;
+color: white !important;
+font-size: 16px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+box-shadow: 0 2px 5px rgba(47, 136, 154, 0.4);
+transition: background 0.3s ease;
+text-transform: none;
+font-family: 'PT Sans', sans-serif;
+line-height: normal;
+height: auto;
+}
+
+
+.submit-btn:hover {
+background: #3599ae;
+}
+
+.close-modal {
+position: absolute;
+top: -13px;
+right: -2px;
+border: none;
+background: none;
+font-size: 40px;
+cursor: pointer;
+color: #aaa;
+}
+
+.close-modal:hover {
+color: #000;
+}
+
+.auth-form input[type="checkbox"] {
+width: auto;
+margin: 0;
+appearance: checkbox;
+cursor: pointer;
+}
+
+
+.error-message {
+color: #e74c3c;
+font-size: 14px;
+margin-top: 5px;
+display: none;
+}
+
+input.invalid {
+border: 1px solid #e74c3c;
+background-color: #fff6f6;
+}
+
+
+.error_auth {
+color: #e74c3c; /* rojo suave */
+font-size: 13px;
+margin: 5px 0 10px 0;
+font-weight: 500;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+display: block;
+animation: fadeIn 0.3s ease-in-out;
+}
+
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(-2px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+/* Contenedor del avatar y el menú */
+#auth_all {
+position: relative;
+display: inline-block;
+}
+#user-menu {
+position: absolute;
+top: 120%;
+right: 0;
+background-color: #fff;
+border-radius: 12px;
+padding: 16px;
+min-width: 200px;
+box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+z-index: 9999;
+text-align: center;
+display: none;
+transition: opacity 0.25s ease, transform 0.25s ease;
+opacity: 0;
+transform: translateY(-10px);
+}
+
+/* Mostrar menú */
+#user-menu.show {
+display: block;
+opacity: 1;
+transform: translateY(0);
+}
+
+/* Flechita arriba */
+#user-menu::before {
+content: "";
+position: absolute;
+top: -8px;
+right: 20px;
+border-width: 0 8px 8px 8px;
+border-style: solid;
+border-color: transparent transparent #fff transparent;
+}
+
+/* Nombre de usuario */
+#user-menu p {
+font-size: 16px;
+font-weight: 700;
+color: #222;
+margin-bottom: 14px;
+}
+
+/* Lista */
+#user-menu ul {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+/* Enlaces */
+#user-menu ul li {
+margin: 6px 0;
+}
+
+#user-menu ul li a {
+display: block;
+text-decoration: none;
+color: #333;
+font-size: 15px;
+padding: 8px 12px;
+border-radius: 6px;
+transition: background 0.2s, color 0.2s;
+}
+
+#user-menu ul li a:hover {
+background-color: #f0f0f0;
+color: #000;
+}
+
+
+.header-icons, .header-wrapicon1, header {
+overflow: visible !important;
+/* height: auto !important; */
+}
+
+.action {
+position: relative;
+width: 60px;      /* define ancho fijo del contenedor */
+height: 60px;     /* define altura fija del contenedor */
+overflow: visible; /* asegura que nada se corte */
+z-index: 9999;    /* asegura que esté sobre otros elementos */
+}
+
+
+.action .profile {
+position: relative;
+width: 100%;
+height: 100%;
+border-radius: 50%;
+overflow: hidden;
+}
+
+.action .profile img {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.action .menu {
+position: absolute;
+top: 120px;
+right: -10px;
+padding: 10px 20px;
+background: #fff;
+width: 260px;
+box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
+border-radius: 15px;
+transition: 0.5s;
+visibility: hidden;
+opacity: 0;
+}
+
+.action .menu.active {
+top: 80px;
+visibility: visible;
+opacity: 1;
+}
+
+.action .menu::before {
+content: "";
+position: absolute;
+top: -5px;
+right: 28px;
+width: 20px;
+height: 20px;
+background: #fff;
+transform: rotate(45deg);
+}
+
+.action .menu h3 {
+width: 100%;
+text-align: center;
+font-size: 18px;
+padding: 20px 0;
+font-weight: 500;
+color: #555;
+line-height: 1.5em;
+}
+
+.action .menu h3 span {
+font-size: 14px;
+color: #cecece;
+font-weight: 300;
+}
+
+.action .menu ul li {
+list-style: none;
+padding: 16px 0;
+border-top: 1px solid rgba(0, 0, 0, 0.05);
+display: flex;
+align-items: center;
+}
+
+.action .menu ul li img {
+max-width: 20px;
+margin-right: 10px; 
+opacity: 0.5;
+transition: 0.5s;
+}
+
+.action .menu ul li:hover img {
+opacity: 1;
+}
+
+.action .menu ul li a {
+display: inline-block;
+text-decoration: none;
+color: #555;
+font-weight: 500;
+transition: 0.5s;
+}
+
+.action .menu ul li:hover a {
+color: #ff5d94;
+}
+
+
+#like-detail {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+#like-detail .fa-heart {
+  font-size: 1.5rem;
+  color: #555;
+  transition: color .2s;
+}
+#like-detail.liked .fa-heart {
+  color: #e74c3c;
+}
+.block2-btn-addwishlist {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  color: rgba(255,255,255,0.8);
+  transition: color .2s;
+  z-index: 2;
+}
+.block2-btn-addwishlist:hover { color: #e74c3c; }
+.block2-btn-addwishlist .fa-heart { /* cuando ya está like */
+  color: #e74c3c;
+}

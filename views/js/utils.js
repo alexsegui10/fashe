@@ -15,3 +15,4 @@ function ajaxpromise(stype, surl, sdata, sdatatype){
     });
 }
 
+

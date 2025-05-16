@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+  <function>
+    <name>view</name>
+    <uri>view</uri>
+  </function>
+  <function>
+    <name>buscar_categoria</name>
+    <uri>buscar_categoria</uri>
+  </function>
+  <function>
+    <name>buscar_marca</name>
+    <uri>buscar_marca</uri>
+  </function>
+  <function>
+    <name>buscar_marca_por_categoria</name>
+    <uri>buscar_marca_por_categoria</uri>
+  </function>
+  <function>
+    <name>autocomplete</name>
+    <uri>autocomplete</uri>
+  </function>
+</functions>

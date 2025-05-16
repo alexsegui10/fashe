@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+  <function><name>view</name><uri>view</uri></function>
+  <function><name>listProductos</name><uri>list-productos</uri></function>
+  <function><name>countListProductos</name><uri>count_list-productos</uri></function>
+  <function><name>countRelacionados</name><uri>count_relacionados</uri></function>
+  <function><name>countComplementosRelacionados</name><uri>count_complementos_relacionados</uri></function>
+  <function><name>relacionados</name><uri>relacionados</uri></function>
+  <function><name>complementos</name><uri>complementos</uri></function>
+  <function><name>añadirVisitasCategoria</name><uri>añadir_visitas_categoria</uri></function>
+  <function><name>updateRating</name><uri>rating</uri></function>
+  <function><name>printFilters</name><uri>print_filters</uri></function>
+  <function><name>filtros</name><uri>filtros</uri></function>
+  <function><name>countFiltros</name><uri>count_filtros</uri></function>
+  <function><name>details</name><uri>details</uri></function>
+  <function><name>tipos</name><uri>tipos</uri></function>
+  <function><name>controlLikes</name><uri>control_likes</uri></function>
+  <function><name>loadLikesUser</name><uri>load_likes_user</uri></function>
+  <function><name>countLikes</name><uri>count_likes</uri></function>
+</functions>

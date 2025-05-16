@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+    <function>
+        <name>view</name>
+        <uri>view</uri>
+    </function>
+    <function>
+        <name>carrusel_ciudad</name>
+        <uri>carrusel_ciudad</uri>
+    </function>
+    <function>
+        <name>carrusel_marcas</name>
+        <uri>carrusel_marcas</uri>
+    </function>
+    <function>
+        <name>categorias</name>
+        <uri>categorias</uri>
+    </function>
+    <function>
+        <name>categorias_visitado</name>
+        <uri>categorias_visitado</uri>
+    </function>
+    <function>
+        <name>rating</name>
+        <uri>rating</uri>
+    </function>
+</functions>

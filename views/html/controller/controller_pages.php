@@ -1,10 +1,15 @@
 <?php
 	switch($_GET['module']){
+		case "controller_auth";
+			include("module/auth/controller/".$_GET['module'].".php");
+			break;
 		case "controller_home";
 			include("module/home/controller/".$_GET['module'].".php");
+			include("module/auth/view/auth.html");
 			break;
 		case "controller_shop";
 			include("module/shop/controller/".$_GET['module'].".php");
+			include("module/auth/view/auth.html");
 			break;
 		case "contacto";
 			include("views/html/contact.php");

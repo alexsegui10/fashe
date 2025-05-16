@@ -1,0 +1,48 @@
+<div id="auth_all">
+<div class="auth-modal hidden" id="auth-modal">
+    <div class="auth-modal-container">
+      <ul class="auth-switcher">
+        <li><a href="#" class="switch selected" data-type="login">Iniciar Sesión</a></li>
+        <li><a href="#" class="switch" data-type="signup">Registrarse</a></li>
+      </ul>
+      <div class="auth-block" data-type="login">
+        <form class="auth-form" method="post" name="login_form" id="login_form">
+          <div style="position: relative; display: inline-block;">
+            <i class="fa-solid fa-envelope" style="position: absolute; top: 40%; left: 10px; transform: translateY(-50%); color: #999;"></i>
+            <input type="email" name="correo_reg" placeholder="E-mail" id="correo_login" required style="padding-left: 30px;">
+            <small id="emailerror" class="error_auth"></small>
+          </div>
+          <div style="position: relative; display: inline-block;">
+            <i class="fa-solid fa-key" style="position: absolute; top: 40%; left: 10px; transform: translateY(-50%); color: #999;"></i>
+            <input type="password" name="password_reg" placeholder="Password" id="password_login" required style="padding-left: 30px;">
+            <small id="passworderror" class="error_auth"></small>
+          </div>
+          <label><input type="checkbox" required> Recordar</label>
+          <input type="submit" value="Acceder" id="ir_login"  class="submit-btn">
+        </form>
+      </div>
+      <div class="auth-block hidden" data-type="signup">
+        <form class="auth-form" method="post" name="register_form" id="register_form">
+          <div style="position: relative; display: inline-block;">
+            <i class="fa-solid fa-user" style="position: absolute; top: 40%; left: 10px; transform: translateY(-50%); color: #999;"></i>
+            <input type="text"  name="username_reg" placeholder="Username" id="username_register" required style="padding-left: 30px;">
+            <small id="usernameerror1" class="error_auth"></small>
+          </div>
+          <div style="position: relative; display: inline-block;">
+            <i class="fa-solid fa-envelope" style="position: absolute; top: 40%; left: 10px; transform: translateY(-50%); color: #999;"></i>
+            <input type="email"  name="correo_reg" placeholder="E-mail" id="correo_register" required style="padding-left: 30px;">
+            <small id="emailerror1" class="error_auth"></small>
+          </div>
+          <div style="position: relative; display: inline-block;">
+            <i class="fa-solid fa-key" style="position: absolute; top: 40%; left: 10px; transform: translateY(-50%); color: #999;"></i>
+            <input type="password" name="password_reg"  placeholder="Password" id="password_register" required style="padding-left: 30px;">
+            <small id="passworderror1" class="error_auth"></small>
+          </div>
+          <label><input type="checkbox" required> Aceptar <a href="#"> Terminos</a></label>
+          <input type="submit" value="Crear cuenta" id="ir_register" class="submit-btn">
+        </form>
+      </div>
+      <button class="close-modal">&times;</button>
+    </div>
+  </div>
+</div>

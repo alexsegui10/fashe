@@ -25,6 +25,12 @@
   <script src="./fashe-theme_files/jquery.cookie.js"></script>
   <script src="./fashe-theme_files/toastr.min.js"></script>
   </script>
+  <script>
+    document.querySelector('[data-signin="signup"]').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector('.js-signin-modal').classList.add('cd-signin-modal--is-visible');
+    });
+  </script>
   </body>
   </html>
   

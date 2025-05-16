@@ -31,37 +31,60 @@
     
         <div class="wrap_header">
           <!-- Logo -->
-          <a href="#" class="logo">
+          <a href="?module=controller_home&op=list" class="logo">
             <img src="./fashe-theme_files/logo.png" alt="fashe-theme">
           </a>
-    
+        <!-- Search bar -->
+        <div style="flex:1; max-width:700px; height:50px; border-radius:50px; box-shadow:0 2px 6px rgba(0,0,0,0.1); display:flex; align-items:center; font-family:Arial, sans-serif; background-color:#fff;">
+
+          <select class="categorias_select" style="border:none; padding:10px; flex:1; outline:none; text-align:center; appearance:none; background-color:transparent;">
+          </select>
+
+          <div style="width:1px; height:25px; background:#ccc;"></div>
+
+          <select class="marcas_select" style="border:none; padding:10px; flex:1; outline:none; text-align:center; appearance:none; background-color:transparent;">
+          </select>
+
+          <div style="width:1px; height:25px; background:#ccc;"></div>
+
+          <input type="text" class="ciudad_auto" autocomplete="off"  placeholder="Ciudad" id="autocom" style="border:none; padding:10px; flex:1; outline:none; text-align:center; color:#aaa;">
+          <div class="ciudad_auto_resultados"></div>
+          
+
+          <button class="buscar_search"  style="border:none; background-color:#FF385C; padding:10px; border-radius:50%; cursor:pointer;">
+            <img src="https://icon-library.com/images/white-search-icon-png/white-search-icon-png-12.jpg" alt="Buscar" style="width:20px;height:20px;">
+          </button>
+        </div>
+
           <!-- Menu -->
           <div class="wrap_menu">
             <nav class="menu">
               <ul class="main_menu">
                 <li class="sale-noti">
-                  <a href="?module=controller_home&op=list">Home</a>
+                  <a href="?module=home">Inicio</a>
                 </li>
-                <li><a href="?module=controller_shop&op=list">Shop</a></li>
-                <li><a href="#">Sale</a></li>
-                <li><a href="#">Features</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="?module=shop">Tienda</a></li>
               </ul>
             </nav>
           </div>
-    
-          <!-- Iconos Header -->
+          
+
           <div class="header-icons">
-            <a href="#" class="header-wrapicon1 dis-block">
-              <img src="./fashe-theme_files/icon-header-01.png" class="header-icon1" alt="ICON">
+            <a href="javascript:void(0)" class="header-wrapicon1 dis-block">
+              <div class="action">
+                <div class="profile" onclick="menuToggle();">
+                  <img src="./fashe-theme_files/icon-header-01.png" class="header-icon1 modal-btn" data-type="login" id="avatar" alt="ICON">
+                </div>
+                <div id="all_menu">
+                <div class="menu" id="auth_all_menu">
+                </div>
+                </div>
+              </div>
             </a>
             <span class="linedivide1"></span>
             <div class="header-wrapicon2">
               <img src="./fashe-theme_files/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
               <span class="header-icons-noti" id="cart-total">0</span>
-              <!-- Dropdown Cart (vacío) -->
               <div id="cart" class="header-cart header-dropdown">
                 <div id="subcart">
                   <ul class="header-cart-wrapitem">
@@ -75,8 +98,6 @@
           </div>
         </div>
       </div>
-    
-      <!-- Header Mobile -->
       <div class="wrap_header_mobile">
         <a href="#" class="logo-mobile">
           <img src="./fashe-theme_files/logo.png" alt="fashe-theme">
@@ -133,7 +154,7 @@
 
               <i class="arrow-main-menu fa fa-angle-right" aria-hidden="true"></i>
             </li>
-            <li class="item-menu-mobile"><a href="?module=controller_cursos&op=list"">Shop</a></li>
+            <li class="item-menu-mobile"><a href="?module=shop"">Shop</a></li>
             <li class="item-menu-mobile"><a href="?seccion=controller_cursos&op=list"">Sale</a></li>
             <li class="item-menu-mobile"><a href="?seccion=controller_cursos&op=list"">Features</a></li>
             <li class="item-menu-mobile"><a href="?module=controller_cursos&op=list">Blog</a></li>
