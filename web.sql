@@ -233,7 +233,9 @@ CREATE TABLE usuarios (
     correo VARCHAR(100) NOT NULL UNIQUE,
     contraseña VARCHAR(255) NOT NULL,
     tipo VARCHAR(50) DEFAULT 'cliente',
-    avatar VARCHAR(255) NOT NULL
+    avatar VARCHAR(255) NOT NULL,
+    activo TINYINT(1) NOT NULL DEFAULT 0,
+    token_email VARCHAR(255) DEFAULT NULL
 );
 
 
@@ -329,13 +331,15 @@ INSERT INTO categorias (name, image, visitado) VALUES
 
 
 
-INSERT INTO usuarios (nombre, correo, contraseña, tipo, avatar)
+INSERT INTO usuarios (nombre, correo, contraseña, tipo, avatar,activo,token_email)
 VALUES (
     'alex',
     'alex@gmail.com',
     '1234',
     'cliente',
-    'https://api.dicebear.com/7.x/adventurer/svg?seed=alex'
+    'https://api.dicebear.com/7.x/adventurer/svg?seed=alex',
+    1,
+    'token_email'
 );
 
 

@@ -18,6 +18,9 @@
       include($path . "model/db.class.singleton.php");
       include($path . "model/config.class.singleton.php");
       include($path . "model/middleware_auth.php");
+      include($path . "utils/jwt_process.inc.php");
+      include($path . "utils/mail.inc.php");
+
 
     // ob_start();
     // session_start();
@@ -40,8 +43,8 @@
     
         function __construct() {   
             // echo 'hola';
-            // exit;
-            if(isset($_GET['module'])){
+            // exit; 
+            if(isset($_GET['module'])){ 
                 $this -> uriModule = $_GET['module'];
             }else{
                 $this -> uriModule = 'home';
@@ -105,3 +108,4 @@
     // echo 'hola';
     // exit;
     router::getInstance() -> routingStart();
+    

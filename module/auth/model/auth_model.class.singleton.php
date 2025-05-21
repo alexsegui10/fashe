@@ -13,6 +13,16 @@ class auth_model {
         return self::$_instance;
     }
 
+  
+// module/auth/model/auth_model.php (o donde tengas tu model)
+
+public function verify(...$args) {
+    if (count($args) === 1 && is_array($args[0])) {
+        $args = $args[0];
+    }
+    $token = $args[0];
+    return $this->bll->confirmUserBLL($token);
+}
 
 
 

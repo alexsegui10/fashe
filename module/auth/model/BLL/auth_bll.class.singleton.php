@@ -17,16 +17,43 @@ class auth_bll {
     }
 
     public function register($username, $email, $password) {
-        // 1) ¿Ya existe?
-        if ($this->dao->findByEmail($this->db, $email)) {
-            return 'error_correo';
+    $hashed_pass  = password_hash($password, PASSWORD_DEFAULT);
+    $hashavatar   = md5(strtolower(trim($email)));
+    $avatar       = "https://robohash.org/{$hashavatar}";
+    $token_email  = common::generate_Token_secure(20);
+
+    if (!empty($this->dao->findUser($this->db, $email))) {
+        return 'error_correo';
+    } else {
+        $this->dao->insertUser(
+            $this->db,
+            $username,
+            $email,     
+            $hashed_pass,
+            $avatar,       
+            $activo = 0,
+            $token_email
+        );
+
+        $message = [
+            'type'    => 'validate',
+            'token'   => $token_email,
+            'toEmail' => 'alexsegui10@gmail.com',
+        ];
+        try {
+            $response = mail::send_email($message);
+        } catch (Exception $e) {
+            error_log("[Resend Debug] " . $e->getMessage());
+            return 'ok';
         }
-        // 2) insertar
-        $hash   = password_hash($password, PASSWORD_DEFAULT, ['cost'=>12]);
-        $avatar = "https://api.dicebear.com/7.x/adventurer/svg?seed=".urlencode($username);
-        $ok     = $this->dao->insertUser($this->db, $username, $email, $hash, $avatar);
-        return $ok ? 'ok' : 'error_user';
+        return 'ok';
     }
+    }
+
+public function confirmUserBLL($token) {
+    $ok = $this->dao->updateUser($this->db, $token);
+    return $ok ? 'ok' : 'error';
+}
 
     public function login($email, $password) {
         $user = $this->dao->findUser($this->db, $email);

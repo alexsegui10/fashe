@@ -2,6 +2,8 @@
 <functions>
   <function><name>register</name><uri>register</uri></function>
   <function><name>login</name><uri>login</uri></function>
+  <function><name>verify</name><uri>verify</uri></function>
+  <function><name>verify_email</name><uri>verify_email</uri></function>
   <function><name>dataUser</name><uri>data_user</uri></function>
   <function><name>actividad</name><uri>actividad</uri></function>
   <function><name>controlUser</name><uri>controluser</uri></function>
