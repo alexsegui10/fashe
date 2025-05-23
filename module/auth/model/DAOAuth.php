@@ -26,6 +26,8 @@
             return $res;
         }
 
+
+
         function select_user($correo){
 			$sql = "SELECT `nombre`, `correo`, `contraseña`, `tipo`, `avatar` FROM `usuarios` WHERE correo='$correo'";
 			$conexion = connect::con();

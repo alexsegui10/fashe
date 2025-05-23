@@ -15,7 +15,14 @@ class auth_dao {
         $rows = $db->listar($stmt);
         return $rows[0] ?? null;
     }
-
+    public function updateRecoverActivo($db, $token) {
+        $sql = "
+            UPDATE usuarios
+               SET activo = -1
+             WHERE token_email = '$token'
+        ";
+        return $db->ejecutar($sql);
+    }
     public function insertUser($db, $username, $email, $passwordHash, $avatar, $activo, $token_email) {
         $sql = "
             INSERT INTO usuarios
@@ -26,7 +33,7 @@ class auth_dao {
         $stmt = $db->ejecutar($sql);
         return $stmt;
     }
-public function updateUser($db, $tokenEmail) {
+    public function updateUser($db, $tokenEmail) {
     if (is_array($tokenEmail)) {
         $tokenEmail = $tokenEmail['token_email'] ?? reset($tokenEmail);
     }
@@ -44,10 +51,40 @@ public function updateUser($db, $tokenEmail) {
 }
 
 
+public function findByRecoverToken($db, $token) {
+    $sql  = "SELECT correo, activo FROM usuarios WHERE token_email = '$token'";
+    $stmt = $db->ejecutar($sql);
+    $rows = $db->listar($stmt);
+    return $rows[0] ?? null;
+}
+
+public function updatePassword($db, $token, $hashedPass) {
+    $sql = "
+      UPDATE usuarios
+         SET contraseña     = '$hashedPass',
+             activo         = 1,
+             token_email    = NULL
+       WHERE token_email = '$token'
+    ";
+    return $db->ejecutar($sql);
+}
+
+
+
+public function updateRecover($db, $email, $token_recover) {
+    $sql = "
+      UPDATE usuarios
+         SET activo        = 0,
+             token_email = '$token_recover'
+       WHERE correo = '$email'
+    ";
+    return $db->ejecutar($sql);
+}
+
 
     public function findUser($db, $email) {
         $sql  = "
-            SELECT nombre, correo, contraseña, tipo, avatar
+            SELECT nombre, correo, contraseña, tipo, avatar, activo
               FROM usuarios
              WHERE correo = '$email'
         ";

@@ -27,11 +27,13 @@ class mail
                 case 'recover':
                 $to      = $email['toEmail'];
                 $from    = 'no-reply@tudominio.com';
-                $subject = 'Recuperar contraseña';
-                $html    =  
-                    "<h2>Recupera tu contraseña</h2>"
-                  . "<a href='http://localhost/Fashe/index.php?module=auth&op=recover{$email['token']}'>"
-                  . "Haz clic para recuperar</a>";
+                $subject = 'Verificación de correo';
+                $verifyUrl = "http://localhost/Fashe/index.php"
+                        . "?module=auth"
+                        . "&op=recover_activo"
+                        . "&token={$email['token']}";
+                $html    = "<h2>Verifica tu cuenta</h2>"
+                        . "<a href='{$verifyUrl}'>Haz clic para verificar</a>";
                 break;
 
             default:
@@ -48,7 +50,16 @@ class mail
 
 private static function send_resend(array $values)
 {
-    $apiKey = '';
+    $apiConfig = parse_ini_file(
+        $_SERVER['DOCUMENT_ROOT'] . '/Fashe/model/api.ini',
+        true
+    );
+
+    if (! $apiConfig || ! isset($apiConfig['api']['apikey'])) {
+        throw new \Exception('No se pudo leer api.ini o falta la clave');
+    }
+
+    $apiKey = $apiConfig['api']['apikey'];   
     $url    = 'https://api.resend.com/emails';
 
     $from = 'onboarding@resend.dev';
@@ -62,7 +73,7 @@ private static function send_resend(array $values)
 
 
     $ch = curl_init($url);
-curl_setopt_array($ch, [
+    curl_setopt_array($ch, [
     CURLOPT_HTTPHEADER     => [
         "Authorization: Bearer {$apiKey}",
         "Content-Type: application/json",

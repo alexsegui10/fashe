@@ -17,6 +17,10 @@
             <input type="password" name="password_reg" placeholder="Password" id="password_login" required style="padding-left: 30px;">
             <small id="passworderror" class="error_auth"></small>
           </div>
+                    <p class="mt-1">
+            <a href="#" class="modal-btn" data-type="recover">¿Olvidaste tu contraseña?</a>
+          </p>
+
           <label><input type="checkbox" required> Recordar</label>
           <input type="submit" value="Acceder" id="ir_login"  class="submit-btn">
         </form>
@@ -43,6 +47,72 @@
         </form>
       </div>
       <button class="close-modal">&times;</button>
+      <div class="auth-block hidden" data-type="recover">
+        <form class="auth-form" method="post" name="recover_form" id="recover_form">
+          <h3>Recuperar contraseña</h3>
+          <div style="position: relative; display: inline-block;">
+            <i class="fa-solid fa-envelope"
+               style="position: absolute; top: 40%; left: 10px; transform: translateY(-50%); color: #999;"></i>
+            <input type="email"
+                   name="correo_recover"
+                   placeholder="Tu e-mail"
+                   id="correo_recover"
+                   required
+                   style="padding-left: 30px;">
+            <small id="recovererror" class="error_auth"></small>
+          </div>
+            <input type="submit"
+                  value="Enviar enlace de recuperación"
+                  id="ir_recover"
+                  class="submit-btn">
+
+          <p class="mt-2">
+            <a href="#" class="switch" data-type="login">← Volver al Login</a>
+          </p>
+        </form>
+      </div>
+            <!-- BLOQUE OCULTO DE RESET PASSWORD -->
+      <div class="auth-block hidden" data-type="reset">
+        <form class="auth-form" method="post" name="reset_form" id="reset_form">
+          <h3>Restablecer contraseña</h3>
+          <!-- Token oculto (lo rellenarás por JS desde la URL o el enlace) -->
+          <input type="hidden" name="token_recover" id="token_recover" value="">
+          
+          <div style="position: relative; display: inline-block;">
+            <i class="fa-solid fa-key"
+               style="position: absolute; top: 40%; left: 10px; transform: translateY(-50%); color: #999;"></i>
+            <input type="password"
+                   name="password_new"
+                   placeholder="Nueva contraseña"
+                   id="password_new"
+                   required
+                   style="padding-left: 30px;">
+            <small id="passwordnewerror" class="error_auth"></small>
+          </div>
+          
+          <div style="position: relative; display: inline-block;">
+            <i class="fa-solid fa-key"
+               style="position: absolute; top: 40%; left: 10px; transform: translateY(-50%); color: #999;"></i>
+            <input type="password"
+                   name="password_confirm"
+                   placeholder="Repite la contraseña"
+                   id="password_confirm"
+                   required
+                   style="padding-left: 30px;">
+            <small id="passwordconfirmerror" class="error_auth"></small>
+          </div>
+          
+          <input type="submit"
+                 value="Cambiar contraseña"
+                 id="ir_reset"
+                 class="submit-btn">
+          
+          <p class="mt-2">
+            <a href="#" class="switch" data-type="login">← Volver al Login</a>
+          </p>
+        </form>
+      </div>
+
     </div>
   </div>
 </div>

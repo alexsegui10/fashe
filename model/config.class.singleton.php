@@ -14,10 +14,18 @@
             // $this->_hostdb = $cnfg['host'];
             // $this->_db = $cnfg['db'];
 
-            $this->_userdb = 'root';
-            $this->_passdb = '';
-            $this->_hostdb = 'localhost';
-            $this->_db = 'wallapop_alex';
+        $dbConfig = parse_ini_file(
+            $_SERVER['DOCUMENT_ROOT'] . '/Fashe/model/db.ini',
+            true
+        );
+
+        if (! $dbConfig) {
+            throw new \Exception('No se pudo leer db.ini');
+        }
+        $this->_userdb = $dbConfig['database']['user'];
+        $this->_passdb = $dbConfig['database']['password'];
+        $this->_hostdb = $dbConfig['database']['host'];
+        $this->_db      = $dbConfig['database']['db'];
 
         }
 

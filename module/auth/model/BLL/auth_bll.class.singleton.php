@@ -55,19 +55,67 @@ public function confirmUserBLL($token) {
     return $ok ? 'ok' : 'error';
 }
 
-    public function login($email, $password) {
-        $user = $this->dao->findUser($this->db, $email);
-        if (!$user) {
-            return 'error_correo';
-        }
-        if (!password_verify($password, $user['contraseña'])) {
-            return 'error_passwd';
-        }
-        $token = create_token($user['correo']);
-        $_SESSION['correo'] = $user['correo'];
-        $_SESSION['tiempo'] = time();
-        return $token;
+
+    public function recover_activo($token) {
+        $ok = $this->dao->updateRecoverActivo($this->db, $token);
+        return $ok ? 'ok' : 'error';
     }
+
+public function login($email, $password) {
+    $user = $this->dao->findUser($this->db, $email);
+
+    if (!$user) { 
+        return 'error_correo';
+    }
+
+    if ($user['activo'] != 1 )  {
+        return 'error_activo';
+        exit;
+    }
+
+    if (!password_verify($password, $user['contraseña'])) {
+        return 'error_passwd';
+    }
+
+    $token = create_token($user['correo']);
+    $_SESSION['correo'] = $user['correo'];
+    $_SESSION['tiempo'] = time();
+    return $token;
+}
+public function resetPassword($token, $newPassword) {
+    $user = $this->dao->findByRecoverToken($this->db, $token);
+    if (!$user || $user['activo'] != -1) {
+        return 'error_token';
+    }
+
+    $hashed = password_hash($newPassword, PASSWORD_DEFAULT);
+    $this->dao->updatePassword($this->db, $token, $hashed);
+
+    return 'ok';
+}
+
+
+public function recover($email) {
+    $user = $this->dao->findUser($this->db, $email);
+    if (!$user) {
+        return 'error_noexist';
+    }
+    $token  = common::generate_Token_secure(20);
+    $this->dao->updateRecover($this->db, $email, $token);
+       
+    $message = [
+        'type'    => 'recover',
+        'token'   => $token,
+        'toEmail' => 'alexsegui10@gmail.com',
+    ];
+    try {
+        mail::send_email($message);
+    } catch (Exception $e) {
+        error_log("[Recover Debug] " . $e->getMessage());
+    } 
+    return 'ok';
+}
+
 
     public function dataUser($token) {
         $info = decode_token($token);

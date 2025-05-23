@@ -11,12 +11,51 @@ class controller_auth {
         );
     }
 
-// module/auth/controller/controller_auth.class.php
+
+public function recover_activo() {
+    $token = $_GET['token'] ?? '';
+    $result = common::load_model('auth_model', 'recover_activo', [$token]);
+    
+    if ($result === 'ok') {
+        header('Location: index.php?module=home&op=view&recovered=1&token=' . $token);
+        exit;
+    }
+
+    echo '<h1>Error de recuperación</h1>';
+    echo '<p>Token inválido o caducado.</p>';
+    echo '<p><a href="index.php?module=home&op=view">Volver al inicio</a></p>';
+}
+    
+
+public function resetPassword() {
+    $token    = $_POST['token_recover'] ?? '';
+    $password = $_POST['password_new']  ?? '';
+    echo json_encode(
+        common::load_model('auth_model', 'resetPassword', [$token, $password])
+    );
+}
 
 public function verify() {
-    $token = $_GET['token'] ?? '';
+    $token  = $_GET['token'] ?? '';
     $result = common::load_model('auth_model', 'verify', [$token]);
-    echo json_encode($result);
+    
+    if ($result === 'ok') {
+        header('Location: index.php?module=home&op=view&verified=1');
+        exit;
+    }
+
+    echo '<h1>Error de verificación</h1>';
+    echo '<p>Token inválido o caducado.</p>';
+    echo '<p><a href="index.php?module=home&op=view">Volver al inicio</a></p>';
+}
+
+
+
+public function recover() {
+    $email = $_POST['correo_recover'];
+    echo json_encode(
+        common::load_model('auth_model', 'recover', [$email])
+    );
 }
 
 

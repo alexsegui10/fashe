@@ -2,6 +2,9 @@
 <functions>
   <function><name>register</name><uri>register</uri></function>
   <function><name>login</name><uri>login</uri></function>
+  <function><name>recover</name><uri>recover</uri></function>
+  <function><name>recover_activo</name><uri>recover_activo</uri></function>
+  <function><name>recover_password</name><uri>recover_password</uri></function>
   <function><name>verify</name><uri>verify</uri></function>
   <function><name>verify_email</name><uri>verify_email</uri></function>
   <function><name>dataUser</name><uri>data_user</uri></function>
@@ -9,4 +12,5 @@
   <function><name>controlUser</name><uri>controluser</uri></function>
   <function><name>refreshToken</name><uri>refresh_token</uri></function>
   <function><name>refreshCookie</name><uri>refresh_cookie</uri></function>
+  <function><name>resetPassword</name><uri>resetPassword</uri></function>
 </functions>

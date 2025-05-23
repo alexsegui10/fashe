@@ -65,54 +65,24 @@ function cargar_menu() {
 
   
 // ------------------- LOAD CONTENT ------------------------ //
-document.addEventListener('DOMContentLoaded', function() {
-  // Lectura de los parámetros GET
+function load_content() {
   const params = new URLSearchParams(window.location.search);
-  const module = params.get('module');
-  const op     = params.get('op');
-  const token  = params.get('token');
-
-  // Si estamos en ?module=auth&op=verify&token=…
-  if (module === 'auth' && op === 'verify' && token) {
-    // Llamada al endpoint de verificación
-    ajaxpromise(
-      'POST',
-      'index.php?module=auth&op=verify_email',
-      { token_email: token },
-      'json'
-    )
-    .then(function(resp) {
-      if (resp === 'ok') {
-        Swal.fire({
-          title: '¡Email verificado!',
-          text: 'Tu cuenta ya está activa.',
-          icon: 'success',
-          showConfirmButton: false,
-          timer: 1500
-        }).then(function() {
-          // Redirige al home al cerrar el toast
-          window.location.href = 'index.php?module=home&op=view';
-        });
-      } else {
-        Swal.fire({
-          title: 'Error de verificación',
-          text: 'Token inválido o caducado.',
-          icon: 'error'
-        });
-      }
-    })
-    .catch(function() {
-      Swal.fire({
-        title: 'Error',
-        text: 'No se pudo conectar con el servidor.',
-        icon: 'error'
-      });
+  if (params.get('verified') === '1') {
+    Swal.fire({
+      title: '¡Email verificado!',
+      text: 'Tu cuenta ya está activa.',
+      icon: 'success',
+      confirmButtonText: 'Aceptar'
+    }).then(() => {
+     /// showModal("hidden");
+      params.delete('verified');
+      const newSearch = params.toString();
+      const newUrl = window.location.pathname + (newSearch ? '?' + newSearch : '');
+      history.replaceState(null, '', newUrl);
     });
   }
-});
 
-  document.addEventListener('DOMContentLoaded', load_content);
-
+}
 
 
   $(window).on('load', function() {

@@ -12,18 +12,39 @@ class auth_model {
         }
         return self::$_instance;
     }
-
-  
-// module/auth/model/auth_model.php (o donde tengas tu model)
-
-public function verify(...$args) {
+public function resetPassword(...$args) {
     if (count($args) === 1 && is_array($args[0])) {
         $args = $args[0];
     }
-    $token = $args[0];
-    return $this->bll->confirmUserBLL($token);
+    return $this->bll->resetPassword($args[0], $args[1]);
 }
 
+    public function recover_activo(...$args) {
+        if (count($args) === 1 && is_array($args[0])) {
+            $args = $args[0];
+        }
+        $token = $args[0];
+        return $this->bll->recover_activo($token);
+    }
+
+  
+
+    public function verify(...$args) {
+        if (count($args) === 1 && is_array($args[0])) {
+            $args = $args[0];
+        }
+        $token = $args[0];
+        return $this->bll->confirmUserBLL($token);
+    }
+
+
+        public function recover(...$args) {
+            if (count($args) === 1 && is_array($args[0])) {
+                $args = $args[0];
+            }
+            $email = $args[0];
+            return $this->bll->recover($email);
+        }
 
 
         public function register(...$args) {
