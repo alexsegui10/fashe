@@ -6,7 +6,6 @@ error_reporting(E_ALL);
 
     // $data = 'hola crtl user';
     // die('<script>console.log('.json_encode( $data ) .');</script>');
-    @session_start();
     //include ("module/cursos/model/DAOCurso.php");
     //session_start();
     $path = $_SERVER['DOCUMENT_ROOT'] . '/Fashe/';

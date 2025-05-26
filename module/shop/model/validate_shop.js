@@ -16,7 +16,6 @@ function ajaxForSearch(url, filter, offset, limit, total_pages, order) {
                   >
                     <div class="slick2" id="list-carrusel-${data[row].id_accesorio}">
             `;
-            // concatenación manual de cada imagen
             for (let img in data[row].imagenes) {
               content += `
                       <img class="imagen-fija"
@@ -630,49 +629,49 @@ function click_like(btn) {
   const $icon = $btn.find('i');
   const token = JSON.parse(localStorage.getItem('token')) || false;
   if (!token) {
-    alert('Debes iniciar sesión para dar like');
+    Swal.fire('Debes iniciar sesión para dar like');
     return;
   }
-
   ajaxpromise(
     'POST',
-    'module/shop/controller/controller_shop.php?op=control_likes',
+    'index.php?module=shop&op=control_likes',
     { token: token, id_accesorio: id },
     'json'
   )
   .then(function(response) {
-    $icon.toggleClass('fa-regular fa-solid like_red');
+    if (response === 'liked' || response === 'unliked') {
+      $icon.toggleClass('fa-regular fa-solid like_red');
+    } else {
+      Swal.fire('Error al procesar tu like');
+    }
   })
   .catch(function() {
-    alert('Error al procesar tu like');
+    Swal.fire('Error al procesar tu like');
   });
 }
 
-  
 function load_user_likes() {
-  var token = JSON.parse(localStorage.getItem('token')) || false;
+  const token = JSON.parse(localStorage.getItem('token')) || false;
   if (!token) return;
-
   ajaxpromise(
     'POST',
-    'module/shop/controller/controller_shop.php?op=load_likes_user',
+    'index.php?module=shop&op=load_likes_user',
     { token: token },
     'json'
   )
   .then(function(data) {
-    var ids = data.map(function(item) {
-      return item.id_accesorio;
-    });
     data.forEach(function(item) {
-      var $icon = $(`[data-id="${item.id_accesorio}"] i`);
-      $icon.removeClass('fa-regular')
-           .addClass('fa-solid like_red');
+      $(`[data-id="${item.id_accesorio}"] i`)
+        .removeClass('fa-regular')
+        .addClass('fa-solid like_red');
     });
   })
   .catch(function(err) {
     console.error('Error al cargar likes de usuario:', err);
   });
 }
+
+
 
 
   function clickdetails() {
@@ -1198,7 +1197,7 @@ function añadir_complementos(offset, id, total1) {
     filter_button();
     //loadaccesorios();
     load_user_likes();
-    Remove_filter();
+    Remove_filter(); 
     //detalles();
     pagination();
     paginar();

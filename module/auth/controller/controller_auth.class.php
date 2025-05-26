@@ -1,4 +1,10 @@
 <?php
+/*     @session_start();
+     if (isset($_SESSION["tiempo"])) {
+        $_SESSION["tiempo"] = time(); 
+    } else {
+        $_SESSION["tiempo"] = time(); 
+    }   */
 class controller_auth {
     public function register() {
         $data = [
@@ -69,36 +75,29 @@ public function recover() {
         );
     }
 
-    public function data_user() {
-        $token = $_POST['token'] ?? '';
-        echo json_encode(
-            common::load_model('auth_model', 'dataUser', [$token])
-        );
+ public function controluser() {
+        $token  = $_POST['token'] ?? '';
+        $result = common::load_model('auth_model', 'controlUser', [$token]);
+        echo json_encode($result);
+        exit;
     }
 
     public function actividad() {
-        echo json_encode(
-            common::load_model('auth_model', 'actividad')
-        );
-    }
-
-    public function controluser() {
-        $token = $_POST['token'] ?? '';
-        echo json_encode(
-            common::load_model('auth_model', 'controlUser', [$token])
-        );
+        $result = common::load_model('auth_model', 'actividad', []);
+        echo json_encode($result);
+        exit;
     }
 
     public function refresh_token() {
-        $old = $_POST['token'] ?? '';
-        echo json_encode(
-            common::load_model('auth_model', 'refreshToken', [$old])
-        );
+        $oldToken = $_POST['token'] ?? '';
+        $newToken = common::load_model('auth_model', 'refreshToken', [$oldToken]);
+        echo json_encode($newToken);
+        exit;
     }
 
     public function refresh_cookie() {
-        echo json_encode(
-            common::load_model('auth_model', 'refreshCookie')
-        );
+        $result = common::load_model('auth_model', 'refreshCookie', []);
+        echo json_encode($result);
+        exit;
     }
 }

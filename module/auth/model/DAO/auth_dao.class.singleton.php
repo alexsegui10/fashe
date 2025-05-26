@@ -102,4 +102,35 @@ public function updateRecover($db, $email, $token_recover) {
         $rows = $db->listar($stmt);
         return $rows[0] ?? null;
     }
+     public function controlUser($db, $token) {
+        $info = decode_token($token);
+        if (!$info) return 'Wrong_User';
+        if ($info['exp'] < time()) {
+            return 'Wrong_User';
+        }
+        return (($_SESSION['correo'] ?? '') === $info['correo'])
+            ? 'Correct_User'
+            : 'Wrong_User';
+    }
+
+    public function actividad($db) {
+        if (!isset($_SESSION['tiempo'])) {
+            return 'inactivo';
+        }
+        if ((time() - $_SESSION['tiempo']) >= 1800) {
+            return 'inactivo';
+        }
+        $_SESSION['tiempo'] = time();
+        return 'activo';
+    }
+
+    public function refreshToken($db, $oldToken) {
+        $info = decode_token($oldToken);
+        return create_token($info['correo']);
+    }
+
+    public function refreshCookie($db) {
+        session_regenerate_id();
+        return 'Done';
+    }
 }

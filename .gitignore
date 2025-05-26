@@ -1,4 +1,4 @@
 # Ignorar archivos de configuración sensibles
 /model/db.ini
 /model/api.ini
-/model/jwt.ini 
+/model/jwt.ini

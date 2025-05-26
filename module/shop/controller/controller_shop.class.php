@@ -133,25 +133,25 @@ public function countFiltros() {
         );
     }
 
-    public function controlLikes() {
-        echo json_encode(
-            common::load_model('shop_model', 'toggleLike', [
-                $_POST['token'],
-                $_POST['id_accesorio']
-            ])
-        );
-    } 
+public function control_likes() {
+    $token = $_POST['token'] ?? '';
+    $id    = (int) ($_POST['id_accesorio'] ?? 0);
+
+    error_log("[SHOP] control_likes → token: $token, id: $id");
+
+    $result = common::load_model('shop_model', 'controlLikes', [$token, $id]);
+
+    error_log("[SHOP] control_likes → model result: ".print_r($result, true));
+
+    echo json_encode($result);
+    exit;
+}
 
 
-        public function loadLikesUser() {
-        echo json_encode(
-            common::load_model('shop_model', 'getUserLikes', [$_POST['token']])
-        );
-    }
-
-    public function countLikes() {
-        echo json_encode(
-            common::load_model('shop_model', 'countLikes', [$_POST['id_accesorio']])
-        );
+    public function load_likes_user() {
+        $token = $_POST['token'];
+        $likes = common::load_model('shop_model', 'loadLikesUser', [$token]);
+        echo json_encode($likes);
+        exit;
     }
 }

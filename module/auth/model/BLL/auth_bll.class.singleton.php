@@ -122,29 +122,20 @@ public function recover($email) {
         return $this->dao->findUser($this->db, $info['correo']);
     }
 
-    public function actividad() {
-        if (!isset($_SESSION['tiempo'])) {
-            return 'inactivo';
-        }
-        $_SESSION['tiempo'] = time();
-        return 'activo';
+    public function controlUser($token) {
+        return $this->dao->controlUser($this->db, $token);
     }
 
-    public function controlUser($token) {
-        $info = decode_token($token);
-        if ($info['exp'] < time() || ($_SESSION['correo'] ?? '') !== $info['correo']) {
-            return 'Wrong_User';
-        }
-        return 'Correct_User';
+    public function actividad() {
+        // Inicia o no la sesión si no existe
+        return $this->dao->actividad($this->db);
     }
 
     public function refreshToken($oldToken) {
-        $info = decode_token($oldToken);
-        return create_token($info['correo']);
+        return $this->dao->refreshToken($this->db, $oldToken);
     }
 
     public function refreshCookie() {
-        session_regenerate_id();
-        return 'Done';
+        return $this->dao->refreshCookie($this->db);
     }
 }

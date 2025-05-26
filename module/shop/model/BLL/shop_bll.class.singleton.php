@@ -63,13 +63,27 @@ class shop_bll {
         ];
     }
     
-    public function toggleLike($token, $id) {
-        return $this->dao->toggle_like($this->db, $token, $id);
+    public function controlLikes($token, $id_accesorio) {
+        $info = decode_token($token);
+        $correo = $info['correo'] ?? '';
+        if (!$correo) return 'error';
+
+        $rows = $this->dao->selectLike($this->db, $id_accesorio, $correo);
+        if (!is_array($rows)) return 'error';
+
+        if (count($rows) > 0) {
+            $ok = $this->dao->removeLike($this->db, $id_accesorio, $correo);
+            return $ok ? 'unliked' : 'error';
+        } else {
+            $ok = $this->dao->addLike($this->db, $id_accesorio, $correo);
+            return $ok ? 'liked' : 'error';
+        }
     }
-    public function getUserLikes($token) {
-        return $this->dao->select_likes_usuario($this->db, $token);
-    }
-    public function countLikes($id) {
-        return $this->dao->count_likes($this->db, $id);
+
+    public function loadLikesUser($token) {
+        $info = decode_token($token);
+        $correo = $info['correo'] ?? '';
+        if (!$correo) return [];
+        return $this->dao->selectLikesUsuario($this->db, $correo);
     }
 }

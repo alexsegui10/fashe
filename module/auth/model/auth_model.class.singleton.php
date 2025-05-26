@@ -67,19 +67,21 @@ public function resetPassword(...$args) {
         $password  = $args[1];
         return $this->bll->login($email, $password);
     }
-    public function dataUser($token) {
-        return $this->bll->dataUser($token);
+ public function controlUser(...$args) {
+        if (is_array($args[0])) $args = $args[0];
+        return $this->bll->controlUser($args[0]);
     }
-    public function actividad() {
+
+    public function actividad(...$args) {
         return $this->bll->actividad();
     }
-    public function controlUser($token) {
-        return $this->bll->controlUser($token);
+
+    public function refreshToken(...$args) {
+        if (is_array($args[0])) $args = $args[0];
+        return $this->bll->refreshToken($args[0]);
     }
-    public function refreshToken($oldToken) {
-        return $this->bll->refreshToken($oldToken);
-    }
-    public function refreshCookie() {
+
+    public function refreshCookie(...$args) {
         return $this->bll->refreshCookie();
     }
 }

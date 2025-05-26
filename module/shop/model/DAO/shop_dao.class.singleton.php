@@ -30,7 +30,16 @@ class shop_dao {
         }
         $sql .= " LIMIT $offset, $limit;";
         $stmt = $db->ejecutar($sql);
-        return $db->listar($stmt);
+        $rows = $db->listar($stmt);
+        foreach ($rows as &$row) {
+        if (isset($row['imagenes']) && $row['imagenes'] !== null) {
+            $row['imagenes'] = explode(':', $row['imagenes']);
+        } else {
+            $row['imagenes'] = [];
+        }
+    }
+    
+    return $rows;
     }
 
     public function select_count_productos_list($db) {
@@ -313,32 +322,45 @@ public function select_categorias($db, $id) {
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);
     }
-    public function toggle_like($db, $token, $id) {
-        $json = decode_token($token);
-        $correo = mysqli_real_escape_string($db->getConn(), $json['correo']);
-        $sql = "SELECT id_accesorio FROM likes WHERE id_accesorio = $id AND correo = '$correo'";
-        $stmt = $db->ejecutar($sql);
-        if (mysqli_num_rows($stmt) > 0) {
-            $db->ejecutar("DELETE FROM likes WHERE id_accesorio = $id AND correo = '$correo'");
-            return 1;
-        } else {
-            $db->ejecutar("INSERT IGNORE INTO likes (id_accesorio, correo) VALUES ($id, '$correo')");
-            return 0;
-        }
-    }
-
-    public function select_likes_usuario($db, $token) {
-        $json = decode_token($token);
-        $correo = mysqli_real_escape_string($db->getConn(), $json['correo']);
-        $sql = "SELECT id_accesorio FROM likes WHERE correo = '$correo'";
+    public function selectLike($db, $id_accesorio, $correo) {
+        $correo_esc = addslashes($correo);
+        $sql = "
+            SELECT id_accesorio
+              FROM likes
+             WHERE id_accesorio = $id_accesorio
+               AND correo        = '$correo_esc'
+        ";
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);
     }
 
-    public function count_likes($db, $id) {
-        $sql = "SELECT COUNT(*) AS contador FROM likes WHERE id_accesorio = \$id";
+    public function addLike($db, $id_accesorio, $correo) {
+        $correo_esc = addslashes($correo);
+        $sql = "
+            INSERT IGNORE INTO likes (id_accesorio, correo)
+            VALUES ($id_accesorio, '$correo_esc')
+        ";
+        return $db->ejecutar($sql);
+    }
+
+    public function removeLike($db, $id_accesorio, $correo) {
+        $correo_esc = addslashes($correo);
+        $sql = "
+            DELETE FROM likes
+             WHERE id_accesorio = $id_accesorio
+               AND correo        = '$correo_esc'
+        ";
+        return $db->ejecutar($sql);
+    }
+
+    public function selectLikesUsuario($db, $correo) {
+        $correo_esc = addslashes($correo);
+        $sql = "
+            SELECT id_accesorio
+              FROM likes
+             WHERE correo = '$correo_esc'
+        ";
         $stmt = $db->ejecutar($sql);
-        $row = mysqli_fetch_assoc($stmt);
-        return (int)$row['contador'];
+        return $db->listar($stmt);
     }
 }

@@ -14,7 +14,6 @@
   <function><name>countFiltros</name><uri>count_filtros</uri></function>
   <function><name>details</name><uri>details</uri></function>
   <function><name>tipos</name><uri>tipos</uri></function>
-  <function><name>controlLikes</name><uri>control_likes</uri></function>
-  <function><name>loadLikesUser</name><uri>load_likes_user</uri></function>
-  <function><name>countLikes</name><uri>count_likes</uri></function>
-</functions>
+  <function><name>control_likes</name><uri>control_likes</uri></function>
+  <function><name>load_likes_user</name><uri>load_likes_user</uri></function>
+</functions> 

@@ -56,7 +56,13 @@ public function getRelacionados($params) {
     }
     public function getDetails($id) { return $this->bll->getDetails($id); }
     public function getTipos() { return $this->bll->getTipos(); }
-    public function toggleLike($token, $id) { return $this->bll->toggleLike($token, $id); }
-    public function getUserLikes($token) { return $this->bll->getUserLikes($token); }
-    public function countLikes($id) { return $this->bll->countLikes($id); }
-}
+    public function controlLikes(...$args) {
+        if (count($args) === 1 && is_array($args[0])) $args = $args[0];
+        return $this->bll->controlLikes($args[0], $args[1]);
+    }
+
+    public function loadLikesUser(...$args) {
+        if (count($args) === 1 && is_array($args[0])) $args = $args[0];
+        return $this->bll->loadLikesUser($args[0]);
+    }
+} 
