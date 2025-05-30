@@ -23,16 +23,17 @@ class auth_dao {
         ";
         return $db->ejecutar($sql);
     }
-    public function insertUser($db, $username, $email, $passwordHash, $avatar, $activo, $token_email) {
+    public function insertUser($db, $username, $email, $passwordHash,$tipo, $avatar, $activo, $token_email) {
         $sql = "
             INSERT INTO usuarios
               (nombre, correo, contraseña, tipo, avatar, activo, token_email)
             VALUES
-              ('$username', '$email', '$passwordHash', 'client', '$avatar', '$activo', '$token_email')
+              ('$username', '$email', '$passwordHash', '$tipo', '$avatar', '$activo', '$token_email')
         ";
         $stmt = $db->ejecutar($sql);
         return $stmt;
     }
+    
     public function updateUser($db, $tokenEmail) {
     if (is_array($tokenEmail)) {
         $tokenEmail = $tokenEmail['token_email'] ?? reset($tokenEmail);
@@ -57,7 +58,17 @@ public function findByRecoverToken($db, $token) {
     $rows = $db->listar($stmt);
     return $rows[0] ?? null;
 }
-
+    public function selectUser($db, $correo) {
+        $correoEsc = addslashes($correo);
+        $sql = "
+            SELECT nombre, correo, tipo, avatar
+              FROM usuarios
+             WHERE correo = '$correoEsc'
+        ";
+        $stmt = $db->ejecutar($sql);
+        $row  = $db->listar($stmt);
+        return $row[0] ?? null;
+    }
 public function updatePassword($db, $token, $hashedPass) {
     $sql = "
       UPDATE usuarios

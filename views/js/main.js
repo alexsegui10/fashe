@@ -3,8 +3,12 @@ function cargar_menu() {
     var token = JSON.parse(localStorage.getItem('token')) || false;
     console.log("token", token);
     if (token != false) {
-    ajaxpromise("Post","module/auth/controller/controller_auth.php?op=data_user", { 'token':token } ,"json" )
-    .then(function(resultado) {
+        ajaxpromise(
+          'POST',
+          'index.php?module=auth&op=data_user',
+          { token: token },
+          'json'
+        )    .then(function(resultado) {
         console.log("resultado123", resultado);
         console.log("resultado123"); 
         if (resultado) {

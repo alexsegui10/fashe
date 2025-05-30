@@ -16,6 +16,7 @@ class auth_bll {
         return self::$_instance;
     }
 
+
     public function register($username, $email, $password) {
     $hashed_pass  = password_hash($password, PASSWORD_DEFAULT);
     $hashavatar   = md5(strtolower(trim($email)));
@@ -30,6 +31,7 @@ class auth_bll {
             $username,
             $email,     
             $hashed_pass,
+            $tipo = 'local',
             $avatar,       
             $activo = 0,
             $token_email
@@ -55,6 +57,19 @@ public function confirmUserBLL($token) {
     return $ok ? 'ok' : 'error';
 }
 
+    public function dataUser($token) {
+        try {
+            $info = decode_token($token);
+            $correo = $info['correo'] ?? '';
+            if (!$correo) {
+                return 'error';
+            }
+            $user = $this->dao->selectUser($this->db, $correo);
+            return $user ?: 'error';
+        } catch (Exception $e) {
+            return 'error';
+        }
+    }
 
     public function recover_activo($token) {
         $ok = $this->dao->updateRecoverActivo($this->db, $token);
@@ -94,11 +109,48 @@ public function resetPassword($token, $newPassword) {
     return 'ok';
 }
 
+    public function socialLogin(string $idToken, string $provider) {
+        $claims = common::verifyFirebaseToken($idToken);
+        if (empty($claims['email'])) {
+            return 'error_token';
+        }
+        $email  = $claims['email'];
+        $name   = $claims['name']    ?? explode('@', $email)[0];
+        $avatar = $claims['picture'] ?? "https://robohash.org/".md5($email);
+
+        $existing = $this->dao->findByEmail($this->db, $email);
+        if ($existing) {
+            if (isset($existing['activo']) && $existing['activo'] == 0) {
+                return 'error_activo';
+            }
+        } else {
+            $randomPass = bin2hex(random_bytes(8));
+            $hash       = password_hash($randomPass, PASSWORD_DEFAULT);
+            $this->dao->insertUser(
+                $this->db,
+                $name,
+                $email,
+                $hash,
+                $tipo = 'social',
+                $avatar,
+                1,    // activo
+                null  // sin token_email
+            );
+        }
+
+        $token = create_token($email);
+        $_SESSION['correo'] = $email;
+        $_SESSION['tiempo'] = time();
+        return $token;
+    }
 
 public function recover($email) {
     $user = $this->dao->findUser($this->db, $email);
     if (!$user) {
         return 'error_noexist';
+    }
+    if ($user['tipo'] == 'social') {
+        return 'error_social';
     }
     $token  = common::generate_Token_secure(20);
     $this->dao->updateRecover($this->db, $email, $token);
@@ -117,17 +169,11 @@ public function recover($email) {
 }
 
 
-    public function dataUser($token) {
-        $info = decode_token($token);
-        return $this->dao->findUser($this->db, $info['correo']);
-    }
-
     public function controlUser($token) {
         return $this->dao->controlUser($this->db, $token);
     }
 
     public function actividad() {
-        // Inicia o no la sesión si no existe
         return $this->dao->actividad($this->db);
     }
 

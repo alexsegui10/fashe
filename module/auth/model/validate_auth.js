@@ -314,7 +314,9 @@ function recover(){
           timer: 2000
         });
         setTimeout(() => modal.classList.add('hidden'), 2100);
-      } else {
+      } else if (result === 'error_social') {
+        Swal.fire('No disponible','No puedes recuperar la contraseña de cuentas sociales.','warning');
+      }else {
         console.error('Recover inesperado:', result);
       }
     })

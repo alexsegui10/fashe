@@ -18,6 +18,7 @@ class controller_auth {
     }
 
 
+
 public function recover_activo() {
     $token = $_GET['token'] ?? '';
     $result = common::load_model('auth_model', 'recover_activo', [$token]);
@@ -32,37 +33,54 @@ public function recover_activo() {
     echo '<p><a href="index.php?module=home&op=view">Volver al inicio</a></p>';
 }
     
-
-public function resetPassword() {
-    $token    = $_POST['token_recover'] ?? '';
-    $password = $_POST['password_new']  ?? '';
-    echo json_encode(
-        common::load_model('auth_model', 'resetPassword', [$token, $password])
-    );
-}
-
-public function verify() {
-    $token  = $_GET['token'] ?? '';
-    $result = common::load_model('auth_model', 'verify', [$token]);
-    
-    if ($result === 'ok') {
-        header('Location: index.php?module=home&op=view&verified=1');
+    public function data_user() {
+        $token = $_POST['token'] ?? '';
+        $user  = common::load_model('auth_model', 'dataUser', [$token]);
+        echo json_encode($user);
         exit;
     }
 
-    echo '<h1>Error de verificación</h1>';
-    echo '<p>Token inválido o caducado.</p>';
-    echo '<p><a href="index.php?module=home&op=view">Volver al inicio</a></p>';
-}
+    public function social_login() {
+        $idToken  = $_POST['idToken']   ?? '';
+        $provider = $_POST['provider']  ?? '';
+
+        $jwt = common::load_model('auth_model', 'socialLogin', [$idToken, $provider]);
+
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($jwt);
+        exit;
+    }
+
+    public function resetPassword() {
+        $token    = $_POST['token_recover'] ?? '';
+        $password = $_POST['password_new']  ?? '';
+        echo json_encode(
+            common::load_model('auth_model', 'resetPassword', [$token, $password])
+        );
+    }
+
+    public function verify() {
+        $token  = $_GET['token'] ?? '';
+        $result = common::load_model('auth_model', 'verify', [$token]);
+        
+        if ($result === 'ok') {
+            header('Location: index.php?module=home&op=view&verified=1');
+            exit;
+        }
+
+        echo '<h1>Error de verificación</h1>';
+        echo '<p>Token inválido o caducado.</p>';
+        echo '<p><a href="index.php?module=home&op=view">Volver al inicio</a></p>';
+    }
 
 
 
-public function recover() {
-    $email = $_POST['correo_recover'];
-    echo json_encode(
-        common::load_model('auth_model', 'recover', [$email])
-    );
-}
+    public function recover() {
+        $email = $_POST['correo_recover'];
+        echo json_encode(
+            common::load_model('auth_model', 'recover', [$email])
+        );
+    }
 
 
     public function login() {
@@ -75,12 +93,12 @@ public function recover() {
         );
     }
 
- public function controluser() {
-        $token  = $_POST['token'] ?? '';
-        $result = common::load_model('auth_model', 'controlUser', [$token]);
-        echo json_encode($result);
-        exit;
-    }
+    public function controluser() {
+            $token  = $_POST['token'] ?? '';
+            $result = common::load_model('auth_model', 'controlUser', [$token]);
+            echo json_encode($result);
+            exit;
+        }
 
     public function actividad() {
         $result = common::load_model('auth_model', 'actividad', []);

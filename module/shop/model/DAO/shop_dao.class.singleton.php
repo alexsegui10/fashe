@@ -180,7 +180,16 @@ class shop_dao {
         $consulta .= " LIMIT $offset, $limit";
     
         $stmt = $db->ejecutar($consulta);
-        return $db->listar($stmt);
+        $rows = $db->listar($stmt);
+        foreach ($rows as &$row) {
+        if (isset($row['imagenes']) && $row['imagenes'] !== null) {
+            $row['imagenes'] = explode(':', $row['imagenes']);
+        } else {
+            $row['imagenes'] = [];
+        }
+    }
+    
+    return $rows;
     }
     
     public function count_filters($db, $filter) {

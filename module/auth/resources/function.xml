@@ -7,10 +7,12 @@
   <function><name>recover_password</name><uri>recover_password</uri></function>
   <function><name>verify</name><uri>verify</uri></function>
   <function><name>verify_email</name><uri>verify_email</uri></function>
-  <function><name>dataUser</name><uri>data_user</uri></function>
+  <function><name>data_user</name><uri>data_user</uri></function>
   <function><name>resetPassword</name><uri>resetPassword</uri></function>
   <function><name>controluser</name><uri><item>controluser</item></uri></function> 
   <function>  <name>actividad</name><uri><item>actividad</item></uri></function> 
   <function>   <name>refresh_token</name><uri><item>refresh_token</item></uri></function>
   <function>  <name>refresh_cookie</name><uri><item>refresh_cookie</item></uri> </function>
+  <function>  <name>social_login</name><uri><item>social_login</item></uri> </function>
+
 </functions>

@@ -9,19 +9,28 @@
         <form class="auth-form" method="post" name="login_form" id="login_form">
           <div style="position: relative; display: inline-block;">
             <i class="fa-solid fa-envelope" style="position: absolute; top: 40%; left: 10px; transform: translateY(-50%); color: #999;"></i>
-            <input type="email" name="correo_reg" placeholder="E-mail" id="correo_login" required style="padding-left: 30px;">
+            <input type="email" name="correo_reg" placeholder="E-mail" id="correo_login"  style="padding-left: 30px;">
             <small id="emailerror" class="error_auth"></small>
           </div>
           <div style="position: relative; display: inline-block;">
             <i class="fa-solid fa-key" style="position: absolute; top: 40%; left: 10px; transform: translateY(-50%); color: #999;"></i>
-            <input type="password" name="password_reg" placeholder="Password" id="password_login" required style="padding-left: 30px;">
+            <input type="password" name="password_reg" placeholder="Password" id="password_login"  style="padding-left: 30px;">
             <small id="passworderror" class="error_auth"></small>
           </div>
+          <div class="social-login">
+             <button type="button" id="google-login" class="social-btn">
+               Iniciar sesión con Google
+             </button>
+             <button type="button" id="github-login" class="social-btn">
+               Iniciar sesión con GitHub
+             </button>
+          </div>
+
                     <p class="mt-1">
             <a href="#" class="modal-btn" data-type="recover">¿Olvidaste tu contraseña?</a>
           </p>
 
-          <label><input type="checkbox" required> Recordar</label>
+          <label><input type="checkbox" > Recordar</label>
           <input type="submit" value="Acceder" id="ir_login"  class="submit-btn">
         </form>
       </div>

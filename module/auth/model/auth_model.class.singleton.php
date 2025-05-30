@@ -67,15 +67,18 @@ public function resetPassword(...$args) {
         $password  = $args[1];
         return $this->bll->login($email, $password);
     }
- public function controlUser(...$args) {
-        if (is_array($args[0])) $args = $args[0];
-        return $this->bll->controlUser($args[0]);
-    }
+    public function controlUser(...$args) {
+            if (is_array($args[0])) $args = $args[0];
+            return $this->bll->controlUser($args[0]);
+        }
 
     public function actividad(...$args) {
         return $this->bll->actividad();
     }
-
+    public function dataUser(...$args) {
+        if (count($args) === 1 && is_array($args[0])) $args = $args[0];
+        return $this->bll->dataUser($args[0]);
+    }
     public function refreshToken(...$args) {
         if (is_array($args[0])) $args = $args[0];
         return $this->bll->refreshToken($args[0]);
@@ -84,4 +87,10 @@ public function resetPassword(...$args) {
     public function refreshCookie(...$args) {
         return $this->bll->refreshCookie();
     }
+    public function socialLogin(...$args) {
+    if (count($args) === 1 && is_array($args[0])) {
+        $args = $args[0];
+    }
+    return $this->bll->socialLogin($args[0], $args[1]);
+}
 }
