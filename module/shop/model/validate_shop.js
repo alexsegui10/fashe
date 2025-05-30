@@ -630,6 +630,15 @@ function click_like(btn) {
   const token = JSON.parse(localStorage.getItem('token')) || false;
   if (!token) {
     Swal.fire('Debes iniciar sesión para dar like');
+    (function checkRecoveredd() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('recovered') === '1') {
+      params.delete('recovered');
+      const token = params.get('token');
+      document.getElementById('token_recover').value = token;
+      showModal('reset');
+    } 
+  })();
     return;
   }
   ajaxpromise(

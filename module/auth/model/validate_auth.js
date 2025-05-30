@@ -12,8 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const token = params.get('token');
       document.getElementById('token_recover').value = token;
       showModal('reset');
-    }
+    } 
   })();
+
 
   triggers.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -69,6 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   } */
    
+    function authlike() {
+      const token = params.get('token');
+      document.getElementById('token_recover').value = token;
+      showModal('reset');
+  };
 
 
 

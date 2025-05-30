@@ -272,14 +272,14 @@ function botarshop() {
     filter.push(['id_categoria', id, 'categorias']);
     localStorage.setItem('filter_categorias', id); 
     localStorage.setItem('filter', JSON.stringify(filter));
-    window.location.href = 'index.php?module=controller_shop&op=list';
+    window.location.href = 'index.php?module=shop&op=view';
   });
 
   $(document).on('click', '.details_rating', function () { 
     var id = this.getAttribute('id');
     filter.push(['id_ciudad', id, 'ciudades']);
     localStorage.setItem('id_accesorio', id); 
-    window.location.href = 'index.php?module=controller_shop&op=list';
+    window.location.href = 'index.php?module=shop&op=view';
   });
 
   $(document).on('click', '.details_ciudades', function () { 
@@ -292,7 +292,7 @@ function botarshop() {
     filter.push(['id_ciudad', id, 'ciudades']);
     localStorage.setItem('filter_ciudades', id); 
     localStorage.setItem('filter', JSON.stringify(filter));
-    window.location.href = 'index.php?module=controller_shop&op=list';
+    window.location.href = 'index.php?module=shop&op=view';
   });
 
 
@@ -306,7 +306,7 @@ function botarshop() {
     filter.push(['id_categoria', id, 'categorias']);
     localStorage.setItem('filter_categorias', id); 
     localStorage.setItem('filter', JSON.stringify(filter));
-    window.location.href = 'index.php?module=controller_shop&op=list';
+    window.location.href = 'index.php?module=shop&op=view';
   });
 
 
@@ -320,7 +320,7 @@ function botarshop() {
     filter.push(['id_marca', [id], 'marcas']);
     localStorage.setItem('filter_marcas', id); 
     localStorage.setItem('filter', JSON.stringify(filter));
-    window.location.href = 'index.php?module=controller_shop&op=list';
+    window.location.href = 'index.php?module=shop&op=view';
   });
 } 
  

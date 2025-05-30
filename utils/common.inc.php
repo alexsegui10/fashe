@@ -28,40 +28,39 @@
                 self::load_error();
             }
         }
-public static function verifyFirebaseToken(string $idToken): array {
-    $url = 'https://oauth2.googleapis.com/tokeninfo?id_token=' . urlencode($idToken);
+    public static function verifyFirebaseToken(string $idToken): array {
+        $url = 'https://oauth2.googleapis.com/tokeninfo?id_token=' . urlencode($idToken);
 
-    $ch = curl_init($url);
-    curl_setopt_array($ch, [
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_TIMEOUT        => 5,
-        CURLOPT_SSL_VERIFYPEER => true, 
-        // CURLOPT_SSL_VERIFYHOST => false, 
-    ]);
-    $resp = curl_exec($ch);
-    $err  = curl_error($ch);
-    curl_close($ch);
-
-    if ($err || $resp === false) {
-        error_log("[Firebase] cURL error al contactar tokeninfo: {$err}");
-        return [];
-    }
-
-    $data = json_decode($resp, true);
-    error_log('[Firebase DEBUG] tokeninfo response: ' . print_r($data, true));
-
+        $ch = curl_init($url);
+        curl_setopt_array($ch, [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT        => 5,
+            CURLOPT_SSL_VERIFYPEER => true, 
+            // CURLOPT_SSL_VERIFYHOST => false, 
+        ]);
+        $resp = curl_exec($ch);
+        $err  = curl_error($ch);
+        curl_close($ch);
  
-    if (
-        empty($data['email']) ||
-        empty($data['aud'])   ||
-        $data['aud'] !== $expectedAud
-    ) {
-        error_log('[Firebase] Token inválido o audience equivocada: ' . print_r($data, true));
-        return [];
-    }
+        if ($err || $resp === false) {
+            error_log("[Firebase] cURL error al contactar tokeninfo: {$err}");
+            return [];
+        }
 
-    return $data;
-}
+        $data = json_decode($resp, true);
+        error_log('[Firebase DEBUG] tokeninfo response: ' . print_r($data, true));
+
+        if (
+            empty($data['email']) ||
+            empty($data['aud'])   ||
+            $data['aud'] !== $expectedAud
+        ) {
+            error_log('[Firebase] Token inválido o audience equivocada: ' . print_r($data, true));
+            return [];
+        }
+
+        return $data;
+    }
 
         public static function load_model($model, $function = null, $args = null) {
             // echo 'hola load_model';
